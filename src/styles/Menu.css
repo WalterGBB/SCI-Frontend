@@ -1,0 +1,136 @@
+body,
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Contenedor principal */
+.container-menu {
+  background-color: #d6d6d6;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  height: auto;
+}
+
+/* Sidebar */
+.sidebar {
+  position: sticky !important;
+  height: 100vh;
+  width: 25vw;
+  background-color: #4b4b4b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  top: 0;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  height: 35%;
+}
+
+.logo img {
+  width: 120px;
+  background-color: #d6d6d6;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+  filter: brightness(110%);
+}
+
+.logo .info {
+  height: 44px;
+}
+
+.bienvenida {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #22ba4d;
+  text-align: center;
+}
+
+.rol {
+  font-size: 0.9rem;
+  color: #ccc;
+  text-align: center;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+}
+
+.btn {
+  background-color: #20aa47;
+  color: white;
+  font-weight: bold;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  filter: brightness(125%);
+}
+
+.btn.active {
+  transform: scale(1.04);
+  filter: brightness(125%);
+  color: #1c1c1c;
+  box-shadow: 0 0 10px #10b981;
+  border: 2px solid white;
+}
+
+.btn-salir {
+  background-color: #e5e5e5;
+  color: #000;
+}
+
+.btn-salir:hover {
+  background-color: #000;
+  color: #e5e5e5;
+}
+
+.version {
+  position: absolute;
+  bottom: 0.5rem;
+  font-size: 0.8rem;
+  color: #10b981;
+}
+
+/* Secciones del sistema */
+.secciones {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.secciones section {
+  min-height: 98vh;
+  max-height: fit-content;
+}

@@ -1,0 +1,288 @@
+.formulario-panel {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.formulario {
+  background-color: #d6d6d6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 30%;
+}
+
+.formulario h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #111;
+  text-shadow: 2.5px 2.2px 2px #10b981;
+}
+
+.fecha {
+  font-size: 1rem;
+  color: #333;
+  font-style: italic;
+}
+
+/* --- Grid del formulario --- */
+.form-grid:not(:last-child) {
+  display: grid;
+  grid-template-columns: repeat(2, 120px);
+  gap: 1.5rem 2.2rem;
+  margin: 0.5rem 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: #222;
+}
+
+.form-group select {
+  padding: 0.4rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* --- Botones --- */
+.form-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 50px;
+  gap: 2rem;
+}
+
+.btn-cancelar,
+.btn-guardar {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  height: 90%;
+  width: 120px;
+  color: black;
+  border: none;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  align-items: center;
+}
+
+.btn-cancelar:hover,
+.btn-guardar:hover {
+  color: #ebebeb;
+  filter: saturate(1.5);
+  border: 2px solid black;
+  transform: scale(1.02);
+}
+
+.btn-guardar {
+  background-color: #3691ffce;
+}
+
+.btn-cancelar {
+  background-color: #ff5252cd;
+}
+
+.observaciones {
+  width: 275px;
+  height: 80px;
+  padding: 0.5rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 0.85rem;
+}
+
+.lista-reportados {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lista-reportados h4 {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.3rem;
+}
+
+.lista-reportados ul {
+  background-color: #ffffff;
+  min-height: 30vh;
+  width: 90%;
+  padding: 0.5rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 1rem;
+  resize: none;
+  list-style: none;
+  font-size: 0.8rem;
+}
+
+.mapa-pcs {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: right;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 90%;
+  margin-bottom: 0.5rem;
+}
+
+.header h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.body {
+  width: 94%;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  gap: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.pc-docente {
+  width: 100px;
+  height: 60px;
+  background-color: #3bd345;
+  border-radius: 5px;
+}
+
+.pc-estudiante {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  background-color: #3bd345;
+  border-radius: 5px;
+}
+
+.pc-estudiante.pasadizo {
+  margin-right: 20px;
+}
+
+.pc-estudiante:hover,
+.pc-docente:hover,
+.activo-extra:hover {
+  filter: brightness(1.2);
+  cursor: pointer;
+}
+
+.pc-numero {
+  position: absolute;
+  top: 2px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.pc-estudiante img {
+  height: 90%;
+  width: 90%;
+}
+
+.mapa-extras {
+  width: 16%;
+  display: grid;
+  grid-template-columns: repeat(2, 70px);
+  align-content: center;
+  align-items: center;
+  justify-content: left;
+  text-align: center;
+  gap: 0.8rem 0.6rem;
+}
+
+.activo-extra {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  height: 60px;
+  text-align: center;
+  background-color: #3bd345;
+}
+
+.activo-extra span {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.activo-extra img {
+  height: 40px;
+  width: 80%;
+}
+
+/* Por el orden de ejecución del css esta clase debe ir después de las
+clases de todos los activos para que no se sobreescriba el background y
+se logre visualziar el cambio de color de fondo al dar click en un activo */
+.reportado {
+  background-color: #f95252;
+}
+
+/* Si la procedencia es alguna aula */
+.mapa-aula {
+  width: 51%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0.4rem;
+}
+
+.mapa-aula h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.aula-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.aula-col {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aula-col h3 {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.aula-col .activo-extra {
+  width: 90%;
+}

@@ -1,0 +1,234 @@
+.reportes-panel {
+  flex: 1;
+  background-color: #d6d6d6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.reportes-panel h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #111;
+  text-shadow: 2.5px 2.2px 2px #10b981;
+  margin-bottom: 1.2rem;
+}
+
+/* Intervalos */
+.intervalos {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 3rem;
+  margin-right: 15px;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.intervalos button {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid white;
+  border-radius: 20px;
+  background-color: #10b981;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.intervalos button:hover {
+  filter: saturate(1.5);
+}
+
+.intervalos .activo {
+  color: black;
+  filter: saturate(1.5);
+  border: 2px solid black;
+  transform: scale(1.02);
+}
+
+/* KPIs */
+.indicadores {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.indicador {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 0;
+  align-items: center;
+  width: 232px;
+}
+
+.circulo1,
+.circulo2,
+.circulo3 {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #000;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+.circulo1::after,
+.circulo2::after,
+.circulo3::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  background: #e5e7eb;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.circulo1 {
+  background: conic-gradient(#6b7280 0deg 360deg, #e5e5e5 270deg 360deg);
+}
+
+.circulo2 {
+  background: conic-gradient(#4ade80 0deg 360deg, #e5e5e5 270deg 360deg);
+}
+
+.circulo3 {
+  background: conic-gradient(#4fb1f7 0deg 360deg, #e5e5e5 270deg 360deg);
+}
+
+.regist,
+.percent,
+.average {
+  position: relative;
+  z-index: 2;
+}
+
+/* Contenedor con scroll horizontal */
+.tabla-container {
+  width: 100%;
+  overflow-x: auto;
+  justify-items: center;
+}
+
+/* Tabla */
+.tabla {
+  max-width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  min-width: 900px; /* para forzar scroll en pantallas pequeñas */
+}
+
+.tabla th {
+  background-color: #626262;
+  height: 40px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.tabla th,
+.tabla td {
+  border: 1px solid #333;
+  padding: 0.3rem;
+  text-align: center;
+}
+
+/* Definir ancho fijo por columna */
+.col-fecha {
+  max-width: 95px;
+  min-width: 95px;
+}
+.col-curso {
+  max-width: 120px;
+  min-width: 120px;
+}
+.col-docente {
+  max-width: 120px;
+  min-width: 120px;
+}
+.col-procedencia {
+  max-width: 120px;
+  min-width: 120px;
+}
+.col-activos {
+  max-width: 120px;
+  min-width: 120px;
+}
+.col-prioridad {
+  max-width: 95px;
+  min-width: 95px;
+}
+.col-observaciones {
+  max-width: 180px;
+  min-width: 180px;
+}
+.col-estado {
+  max-width: 90px;
+  min-width: 90px;
+}
+
+.prioridad.alta {
+  color: red;
+  font-weight: bold;
+}
+
+.prioridad.media {
+  color: orange;
+  font-weight: bold;
+}
+
+.prioridad.baja {
+  color: green;
+  font-weight: bold;
+}
+
+.estado.resuelta {
+  background-color: #14db5d;
+  font-weight: bold;
+}
+
+.estado.pendiente {
+  background-color: #ff9e59;
+  font-weight: bold;
+}
+
+.paginacion {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.descargas {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.iconos {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+}
+
+.iconos img {
+  width: auto;
+  height: 40px;
+}
+
+.iconos img:hover {
+  cursor: pointer;
+  filter: saturate(1.5);
+  transform: scale(1.05);
+}

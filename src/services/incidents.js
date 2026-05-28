@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 // Definimos la URL base para acceder a los endpoints de incidents
-const baseUrl = '/api/incidents'
+const baseUrl = `${import.meta.env.VITE_API_URL}/api/incidents`
 
 // Función para almacenar el token de autenticación, inicialmente es null
 const getConfig = () => {

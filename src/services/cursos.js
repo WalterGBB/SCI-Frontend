@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = '/api/cursos'
+const baseUrl = `${import.meta.env.VITE_API_URL}/api/cursos`
 
 // Reutilizamos tu lógica de extracción de token del localStorage
 const getConfig = () => {

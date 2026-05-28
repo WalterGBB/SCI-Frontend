@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = '/api/users'
+const baseUrl = `${import.meta.env.VITE_API_URL}/api/users`
 
 // Función para almacenar el token de autenticación, inicialmente es null
 const getConfig = () => {

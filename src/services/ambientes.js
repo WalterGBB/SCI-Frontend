@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = '/api/ambientes'
+const baseUrl = `${import.meta.env.VITE_API_URL}/api/ambientes`
 
 const getConfig = () => {
     const loggedUser = JSON.parse(localStorage.getItem('loggedUser'))

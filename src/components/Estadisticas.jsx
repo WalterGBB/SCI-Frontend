@@ -5,7 +5,6 @@ import {
     ResponsiveContainer, LineChart, Line
 } from 'recharts'
 
-import generar from '../assets/generar.png'
 import '../styles/Estadisticas.css'
 
 const Estadisticas = forwardRef(({ id, incidents }, ref) => {
@@ -41,26 +40,14 @@ const Estadisticas = forwardRef(({ id, incidents }, ref) => {
     const filteredIncidents = useMemo(() => {
         if (!fromDate || !toDate) return incidents
 
-        const start = new Date(fromDate)
-        const end = new Date(toDate)
-
-        // Configurar horas para incluir todo el día
-        start.setHours(0, 0, 0, 0)
-        end.setHours(23, 59, 59, 999)
-
-        // Si las fechas son iguales, asegurar que se incluya ese día completo
-        if (fromDate === toDate) {
-            return incidents.filter(({ fechaRegistro }) => {
-                const d = new Date(fechaRegistro)
-                const fechaStr = d.toISOString().slice(0, 10)
-                return fechaStr === fromDate
-            })
-        }
+        const start = new Date(fromDate + "T00:00:00")
+        const end = new Date(toDate + "T23:59:59.999")
 
         return incidents.filter(({ fechaRegistro }) => {
-            const d = new Date(fechaRegistro)
-            return d >= start && d <= end
+            const fecha = new Date(fechaRegistro)
+            return fecha >= start && fecha <= end
         })
+
     }, [incidents, fromDate, toDate])
 
     // Helpers
@@ -79,8 +66,8 @@ const Estadisticas = forwardRef(({ id, incidents }, ref) => {
         return data.map((item) => {
             let fill = '#ffffff'
             if (item.name === 'Baja') fill = '#00c764'
-            else if (item.name === 'Alta') fill = '#ff4c24'
             else if (item.name === 'Media') fill = '#e9b300'
+            else if (item.name === 'Alta') fill = '#ff4c24'
             return { ...item, fill }
         })
     }, [filteredIncidents])
@@ -125,38 +112,29 @@ const Estadisticas = forwardRef(({ id, incidents }, ref) => {
     const graficoTendencia = useMemo(() => {
         if (!fromDate || !toDate) return []
 
-        const start = new Date(fromDate)
-        const end = new Date(toDate)
+        const start = new Date(fromDate + "T00:00:00")
+        const end = new Date(toDate + "T23:59:59.999")
+
         const counts = {}
 
-        // Solo contamos sobre las incidencias ya filtradas
         filteredIncidents.forEach(({ fechaRegistro }) => {
-            const key = new Date(fechaRegistro).toISOString().slice(0, 10)
+            const fecha = new Date(fechaRegistro)
+            const key = fecha.toLocaleDateString('sv-SE') // formato YYYY-MM-DD estable
             counts[key] = (counts[key] || 0) + 1
         })
 
-        // Rellenar días sin incidencias
         const data = []
 
-        // Si las fechas son iguales, mostrar solo ese día
-        if (fromDate === toDate) {
-            const key = fromDate
+        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+            const key = d.toLocaleDateString('sv-SE')
             data.push({
-                fechaRegistro: key.split('-').reverse().join('/'), // dd/mm/yyyy
+                fechaRegistro: key.split('-').reverse().join('/'),
                 Incidencias: counts[key] || 0
             })
-        } else {
-            // Rango de múltiples días
-            for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-                const key = d.toISOString().slice(0, 10)
-                data.push({
-                    fechaRegistro: key.split('-').reverse().join('/'), // dd/mm/yyyy
-                    Incidencias: counts[key] || 0
-                })
-            }
         }
 
         return data
+
     }, [filteredIncidents, fromDate, toDate])
 
     return (
@@ -177,24 +155,34 @@ const Estadisticas = forwardRef(({ id, incidents }, ref) => {
                         onChange={(e) => setInputTo(e.target.value)}
                     />
                     <button className="btn-generar" onClick={handleGenerar}>
-                        <img src={generar} alt="generar-icon" />
+                        <img src='https://res.cloudinary.com/francode/image/upload/v1778545821/generar_buxlmz.png' alt="generar-icon" />
                         generar
                     </button>
                 </div>
             </div>
 
             <div className="graficos-grid">
-                {/* CIRCULAR - NECESIDADES */}
+                {/* CIRCULAR - PRIORIDAD */}
                 <div className="grafico">
                     <ResponsiveContainer width="100%" height={210}>
-                        <PieChart>
+                        <PieChart margin={{ right: 30 }}> {/* Añadimos un pequeño margen derecho al gráfico */}
                             <Tooltip />
-                            <Legend layout="vertical" verticalAlign="middle" align="right" />
+                            <Legend
+                                layout="vertical"
+                                verticalAlign="middle"
+                                align="right"
+                                // El wrapperStyle permite mover la leyenda de forma precisa
+                                wrapperStyle={{
+                                    paddingLeft: "10px",
+                                    right: 80, // Ajusta este número para acercarla o alejarla más
+                                    fontSize: "13px"
+                                }}
+                            />
                             <Pie
                                 data={necesidadesData}
                                 dataKey="value"
                                 nameKey="name"
-                                cx="40%"
+                                cx="45%" // Movimos el centro un poco más a la derecha (antes 40%)
                                 cy="50%"
                                 outerRadius={70}
                                 label={({ percent }) => `${(percent * 100).toFixed(0)}%`}

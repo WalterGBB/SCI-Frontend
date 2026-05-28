@@ -1,0 +1,349 @@
+.MoEd-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3; /* Asegura que el modal se muestre por encima de otros elementos*/
+}
+
+.MoEd-editar {
+  background: #f4f4f4;
+  border-radius: 12px;
+  width: 770px;
+  height: 450px;
+  display: flex;
+  gap: 12px;
+  padding: 20px;
+}
+
+.Mo,
+.Mo select,
+.Mo input,
+.Mo textarea {
+  font-size: 0.75rem;
+}
+
+/* Formulario */
+.MoEd-form {
+  width: 36%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.MoEd-form h3 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: -0.5rem;
+}
+
+.MoEd-calendar-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 15px; /* Ajusta al tamaño de tu imagen PNG */
+  cursor: pointer;
+  margin-right: 2px;
+}
+
+/* Efecto hover aplicado al contenedor para que afecte a la imagen */
+.MoEd-calendar-wrapper:hover .calendar-icon {
+  filter: brightness(1.1);
+  transform: scale(1.2);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.MoEd-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 120.5px);
+  gap: 12px;
+}
+
+.MoEd-grid select,
+.MoEd-grid input {
+  padding: 0.2rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 32px;
+}
+
+.MoEd-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.MoEd-buttons button:hover {
+  transform: scale(1.05);
+}
+
+.MoEd-detalles {
+  height: 70px;
+  padding: 0.5rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 0.85rem;
+}
+
+.MoEd-btn-confirm:hover {
+  filter: brightness(1.4);
+}
+
+.MoEd-btn-confirm {
+  background: #1e3a5f;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.MoEd-btn-cancel {
+  background: #ccc;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.MoEd-btn-cancel:hover {
+  filter: brightness(0.9);
+}
+
+/* Lista de reportados */
+
+.MoEd-lista-reportados {
+  width: 16%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.MoEd-lista-reportados h4 {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.3rem;
+}
+
+.MoEd-lista-reportados ul {
+  background-color: #ffffff;
+  min-height: 24.5vh;
+  width: 90%;
+  padding: 0.5rem;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 0.7rem;
+  resize: none;
+  list-style: none;
+}
+
+.MoEd-foto-incidencia {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 1.2rem;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+.MoEd-foto-incidencia h4 {
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.MoEd-foto-placeholder,
+.MoEd-foto-preview {
+  width: 100%;
+  height: 100px;
+  background-color: #ffffff;
+  border: 2px dashed #444;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  cursor: pointer;
+}
+
+.MoEd-foto-preview {
+  object-fit: cover;
+  border-style: solid;
+}
+
+.MoEd-foto-placeholder img {
+  width: 40px;
+  height: 40px;
+}
+
+.MoEd-foto-placeholder:hover,
+.MoEd-foto-preview:hover {
+  filter: brightness(0.95);
+}
+
+/* MAPA */
+
+.MoEd-mapa-pcs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+}
+
+.header h3 {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.MoEd-body {
+  display: grid;
+  width: 94%;
+  gap: 0.15rem;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.MoEd-pc-estudiante {
+  width: 100%;
+  position: relative;
+  max-width: 40px;
+  aspect-ratio: 1 / 1;
+  justify-self: center;
+  background: #3bd345;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.MoEd-pc-numero {
+  position: absolute;
+  top: 2px;
+  font-size: 0.45rem;
+  font-weight: bold;
+}
+
+.MoEd-pc-docente {
+  width: 80px;
+  height: 40px;
+  background: #3bd345;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.MoEd-pc-estudiante img {
+  width: 88%;
+  height: 88%;
+}
+
+.MoEd-mapa-extras {
+  width: 16%;
+  display: grid;
+  grid-template-columns: repeat(2, 52px);
+  align-content: center;
+  align-items: center;
+  justify-content: left;
+  text-align: center;
+  gap: 0.8rem 0.6rem;
+}
+
+.MoEd-activo-extra {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #3bd345;
+  height: 44px;
+  cursor: pointer;
+}
+
+.MoEd-activo-extra span {
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.MoEd-activo-extra img {
+  height: 26px;
+  width: 80%;
+}
+
+.MoEd-mapa-aula {
+  width: 48%;
+  justify-content: center;
+  align-content: center;
+}
+
+.MoEd-mapa-aula h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.MoEd-aula-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.3rem;
+  align-content: center;
+}
+
+.MoEd-aula-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.MoEd-aula-col h3 {
+  margin: 0;
+  align-content: center;
+  font-size: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.MoEd-activo-aula {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #3bd345;
+  height: 50px;
+  width: 90%;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.MoEd-activo-aula span {
+  font-size: 0.55rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 3px;
+}
+
+.MoEd-activo-aula img {
+  height: 30px;
+  width: 80%;
+}
+
+/*Truco de css para aumentar la especificidad al repetir el nombre de la clase*/
+.reportado.reportado {
+  background-color: #f95252;
+}

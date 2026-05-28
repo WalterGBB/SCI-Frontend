@@ -1,0 +1,183 @@
+.pdf-map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 600px;
+  gap: 0.8rem;
+}
+
+/* ===== MAPA LAB ===== */
+
+.pdf-mapa-pcs {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+}
+
+.pdf-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 0.7rem;
+  gap: 1rem;
+  width: 90%;
+}
+
+.pdf-header h2 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* PC docente */
+.pdf-pc-docente {
+  background-color: #3bd345;
+  border-radius: 5px;
+  padding: 3px;
+  width: 90px;
+  height: 40px;
+}
+
+/* GRID PCs */
+.pdf-body {
+  display: grid;
+  gap: 0.2rem;
+  justify-content: center;
+  align-items: start;
+}
+
+/* PC estudiante */
+.pdf-pc-estudiante {
+  width: 85%;
+  max-width: 50px;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  background-color: #3bd345;
+  border-radius: 5px;
+  transition: 0.2s ease;
+}
+
+.pdf-pc-estudiante img {
+  height: 88%;
+  width: 88%;
+  object-fit: contain;
+}
+
+.pdf-pc-numero {
+  position: absolute;
+  top: 0.1vh;
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+
+/* PASADIZO */
+.pdf-pasadizo {
+  margin-right: 12px;
+}
+
+/* ===== EXTRAS ===== */
+
+.pdf-mapa-extras {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem 0;
+  width: 320px;
+  margin: 0 auto;
+}
+
+/* ACTIVO */
+.pdf-activo-extra {
+  flex: 0 0 55px; /* 👈 ancho fijo como tu grid */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  border-radius: 6px;
+  background-color: #3bd345;
+  margin: 0 3px;
+}
+
+/* TEXTO */
+.pdf-activo-extra span {
+  font-size: 9px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 1px;
+}
+
+/* IMAGEN */
+.pdf-activo-extra img {
+  width: 80%;
+  height: 33px;
+  object-fit: contain;
+}
+
+/* ===== AULA ===== */
+
+.pdf-mapa-aula {
+  width: 100%;
+  text-align: center;
+}
+
+.pdf-mapa-aula h2 {
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.pdf-aula-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.pdf-aula-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.pdf-aula-col h3 {
+  height: 32px;
+  align-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.pdf-activo-aula {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #3bd345;
+  height: 82px;
+  width: 90%;
+  margin-bottom: 8px;
+}
+
+.pdf-activo-aula span {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.pdf-activo-aula img {
+  height: 48px;
+  width: 80%;
+}

@@ -1,0 +1,39 @@
+.MoCo-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4; /* Asegura que el modal se muestre por encima de otros elementos*/
+}
+
+.MoCo-overlay .modal-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  padding-bottom: 14px;
+}
+
+.MoCo-overlay h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.msm {
+  font-size: 0.9rem;
+  text-align: justify;
+}
+
+.resuelta {
+  color: #14db5d;
+}
+
+.pendiente {
+  color: #ff9e59;
+}
+
+.cerrada {
+  color: #4b4b4b;
+}

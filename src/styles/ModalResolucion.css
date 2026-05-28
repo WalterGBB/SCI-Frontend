@@ -1,0 +1,80 @@
+.MoRe-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 435px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.modal-container h3 {
+  margin-bottom: 10px;
+}
+
+.modal-container textarea {
+  width: 100%;
+  height: 100px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.modal-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-buttons button {
+  margin: 0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.modal-buttons button:hover {
+  transform: scale(1.05);
+}
+
+.btn-confirm {
+  background: #1e3a5f;
+  color: white;
+}
+
+.btn-cancel {
+  background: #ccc;
+}
+
+.btn-confirm:hover {
+  filter: brightness(1.4);
+}
+
+.btn-cancel:hover {
+  filter: brightness(0.9);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

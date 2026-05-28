@@ -31,7 +31,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1rem;
+  padding: 1.5rem 1rem 2rem 1rem;
   top: 0;
 }
 
@@ -50,7 +50,9 @@ html {
   background-color: #d6d6d6;
   border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
 
 .logo img:hover {
@@ -62,7 +64,7 @@ html {
   height: 44px;
 }
 
-.bienvenida {
+.user-name {
   font-size: 1.2rem;
   font-weight: bold;
   color: #22ba4d;
@@ -83,44 +85,53 @@ html {
   align-items: center;
 }
 
-.btn {
+.btn.btn {
   background-color: #20aa47;
   color: white;
   font-weight: bold;
   font-size: 0.95rem;
-  padding: 0.8rem 1.5rem;
-  border: none;
+  padding: 0.6rem 1.5rem;
+  border: 2px solid transparent;
   border-radius: 10px;
   cursor: pointer;
 }
 
 .btn:hover {
-  filter: brightness(125%);
+  filter: brightness(120%);
 }
 
 .btn.active {
-  transform: scale(1.04);
-  filter: brightness(125%);
   color: #1c1c1c;
-  box-shadow: 0 0 10px #10b981;
   border: 2px solid white;
+  outline: 2px solid white;
+  outline-offset: -2px;
+  box-shadow:
+    0 0 15px #10b981,
+    inset 0 0 5px rgba(255, 255, 255, 0.5);
+  filter: brightness(125%);
+}
+
+.btn.users {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .btn-salir {
   background-color: #e5e5e5;
   color: #000;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  padding: 0.6rem 1rem;
 }
 
 .btn-salir:hover {
   background-color: #000;
   color: #e5e5e5;
-}
-
-.version {
-  position: absolute;
-  bottom: 0.5rem;
-  font-size: 0.8rem;
-  color: #10b981;
 }
 
 /* Secciones del sistema */
@@ -131,6 +142,73 @@ html {
 }
 
 .secciones section {
-  min-height: 98vh;
-  max-height: fit-content;
+  min-height: 100vh;
+  max-height: 100vh;
+}
+
+.sidebar-footer-actions {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.1rem;
+}
+
+/* Ajuste al botón salir para que comparta el ancho */
+.sidebar-footer-actions {
+  padding: 0.8rem 1rem; /* Un poco menos de padding lateral para que quepa bien */
+}
+
+/* --- CONFIGURACIÓN ESTÁNDAR DEL BOTÓN --- */
+.btn-db-admin {
+  background-color: #333; /* Fondo oscuro original */
+  /* Reemplazamos el borde por el verde exacto extraído: #22ba4d */
+  border: 2px solid #22ba4d;
+  border-radius: 10px;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  box-sizing: border-box; /* Asegura que el borde no infle el tamaño */
+}
+
+/* --- ESTADO REPOSO DEL ICONO --- */
+.btn-db-admin img {
+  width: 26px;
+  height: 26px;
+  /* Mantengo este filtro porque genera visualmente el color #22ba4d */
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(123deg)
+    brightness(108%) contrast(119%);
+  transition: filter 0.3s ease;
+}
+
+/* --- ESTADO HOVER (INVERSIÓN TOTAL Y SINCRONIZADA) --- */
+.btn-db-admin:hover {
+  /* ¡Aquí está la magia! El fondo ahora es exactamente #22ba4d */
+  background-color: #22ba4d;
+  transform: scale(1.05);
+  /* Sincronizamos el resplandor con el nuevo color */
+  box-shadow: 0 0 15px rgba(34, 186, 77, 0.6);
+}
+
+.btn-db-admin:hover img {
+  /* Al hacer hover el icono se vuelve negro para contrastar con el fondo verde #22ba4d */
+  filter: brightness(0);
+}
+
+/* Ajuste para la versión para que no choque si hay muchos elementos */
+.version {
+  position: absolute;
+  text-align: right;
+  right: 10px;
+  width: 100%;
+  font-size: 0.7rem; /* Un pelín más pequeña para dar aire */
+  color: #10b981;
+  bottom: 6px;
 }

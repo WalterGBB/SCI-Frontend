@@ -1,0 +1,567 @@
+.MoGe-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3; /* Asegura que el modal se muestre por encima de otros elementos*/
+}
+
+.modal-gestion {
+  height: 300px;
+  width: 50%;
+  padding: 1.3rem 0.5rem;
+  border-radius: 25px;
+  /* Esta es la clave para que la X circular flote sin empujar */
+  position: relative;
+  /* Volvemos a garantizar que el contenido esté centrado */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/*Contenedor de cada vista del modal*/
+.gestion-content {
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+}
+
+/*Elemento <section> de cada componente*/
+.gestion-section {
+  height: 200px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Opcional, asegura que nada salga de estos 200px */
+}
+
+/* --- Botón X para cerrar el modal --- */
+.btn-exit-circular {
+  /* Absoluto respecto al contenedor .modal-gestion */
+  position: absolute;
+  /* Valores negativos para que sobresalga en la esquina */
+  top: -15px;
+  right: -15px;
+  width: 40px;
+  height: 40px;
+  background-color: #333; /* Gris oscuro sidebar */
+  color: white;
+  border: 3px solid #22ba4d; /* Verde neón exacto */
+  border-radius: 50%; /* Perfecto círculo */
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  /* Aseguramos que esté sobre cualquier otro elemento */
+  z-index: 1000;
+}
+
+.btn-exit-circular:hover {
+  transform: scale(1.1);
+  background-color: #22ba4d; /* Inversión de colores */
+  color: #333;
+}
+
+.btn-exit-circular span {
+  font-size: 1.3rem;
+}
+
+/* Título del modal */
+.modal-gestion-header {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.modal-gestion-header h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.sub-verde {
+  color: #22ba4d;
+  font-weight: bold;
+  margin-top: 5px;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+}
+
+/*Texto de cada vista tipo "Ambientes/Cursos/Categorías registrados*/
+.gestion-section h3 {
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+/* Grupo de Input y Botón de registro simple */
+.input-group-gestion {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  /* Asegura que los hijos se alineen bien */
+  justify-content: center;
+}
+
+.input-group-gestion input {
+  height: 30px;
+  flex: 1;
+  padding: 0.5rem;
+  border: 2px solid #ddd;
+  font-size: 0.85rem;
+  border-radius: 10px;
+  font-family: inherit;
+  outline: none;
+  background-color: white;
+}
+
+.input-group-gestion input:focus {
+  border-color: #22ba4d;
+}
+
+.btn-add-gestion {
+  height: 30px;
+  background-color: #22ba4d;
+  color: white;
+  border: none;
+  font-size: 0.85rem;
+  padding: 0 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-add-gestion:hover {
+  background-color: #1b9a3e;
+  transform: scale(1.03);
+}
+
+/* Tabla con overflow en y automático */
+.tabla-gestion-wrapper {
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0; /* CRUCIAL para que no se desborde */
+}
+
+.tabla-gestion {
+  width: 100%;
+  font-size: 0.9rem;
+  color: #333;
+  border-collapse: collapse;
+}
+
+.tabla-gestion tr:hover {
+  background-color: #e1e1e1;
+}
+
+.tabla-gestion td {
+  height: 30px;
+  padding: 0 0.5rem;
+}
+
+/*Celdas para las tablas de elementos registrados de cada vista */
+.tabla-gestion td p {
+  width: fit-content;
+}
+
+.tabla-gestion td p:hover {
+  /* Eliminamos font-weight: bold; */
+  -webkit-text-stroke: 0.5px #0e9133; /* Simula el grosor de la negrita */
+  /* text-shadow: 0.3px 0 0 #0e9133; -> Otra alternativa si text-stroke se ve raro en tu fuente */
+  cursor: pointer;
+  color: #0e9133;
+}
+
+/*Contenedor de las acciones disponibles en cada tabla*/
+.tabla-gestion .acciones {
+  text-align: center;
+  gap: 10px;
+}
+
+.tabla-gestion img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.tabla-gestion img:hover {
+  cursor: pointer;
+  filter: brightness(1.2);
+}
+
+/* Menú del modal con tarjetas */
+.gestion-selector {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 30px 0;
+}
+
+.card-gestion {
+  width: 140px;
+  height: 140px;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+.card-gestion:hover {
+  border-color: #22ba4d;
+  transform: scale(1.05);
+}
+
+.card-gestion img {
+  width: 50px;
+  margin-bottom: 10px;
+}
+
+.card-gestion p {
+  font-weight: bold;
+}
+
+/* Botón volver */
+.btn-back {
+  position: absolute;
+  top: 25px;
+  left: 20px;
+  font-size: 0.85rem;
+  background: none;
+  border: none;
+  color: #22ba4d;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-back:hover {
+  text-decoration: underline;
+}
+
+/*====================
+ESTILOS DE AMBIENTES
+======================*/
+
+/* ===== CONFIG INPUTS LABORATORIO ===== */
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 9px;
+}
+
+.config-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.config-item label {
+  font-size: 0.8rem;
+  color: #444;
+}
+
+.config-item input {
+  width: 40px;
+  height: 24px;
+  padding: 0 0 0 6px;
+  margin: 0;
+  border: 2px solid #cfcfcf;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-family: inherit;
+  background: white;
+}
+
+.config-item input:focus {
+  border-color: #22ba4d;
+}
+
+/* Evita que el input se vea enorme en Firefox */
+.config-item input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* Mantener flechas visibles en Chrome */
+.config-item input::-webkit-inner-spin-button {
+  opacity: 1;
+}
+
+/*====================
+ESTILOS DE CURSOS
+======================*/
+.activo {
+  color: #22ba4d;
+}
+
+.inactivo {
+  color: #fb4444;
+}
+
+/*====================
+ESTILOS DE CATEGORIAS
+======================*/
+
+/*VISTA DE DETALLE DE AMBIENTE*/
+.container-izquierda,
+.container-derecha {
+  width: 50%;
+  height: 200px;
+}
+
+.container-izquierda {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+/* ===== IZQUIERDA ===== */
+.form-ambientes {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  gap: 5px;
+}
+
+.form-ambientes .input-principal,
+.form-ambientes select {
+  height: 30px;
+  padding: 0.1rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-family: inherit;
+  outline: none;
+  background-color: white;
+}
+
+.form-ambientes .input-principal {
+  width: 140px;
+  padding-left: 0.3rem;
+}
+
+.form-ambientes select {
+  width: 95px;
+  margin-left: 10px;
+}
+
+.form-ambientes input:focus,
+.form-ambientes select:focus {
+  border-color: #22ba4d;
+}
+
+/* SELECT DOCENTE */
+.select-docente.select-docente {
+  width: 90px;
+  border-radius: 8px;
+  padding: 0.1rem;
+  height: 22px;
+}
+
+/* ===== EXTRAS ===== */
+.btn-add-extra {
+  background: #22ba4d;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.extras-tabla {
+  max-height: 85px;
+}
+
+.tabla-gestion td {
+  font-size: 0.8rem;
+}
+
+.categoria-row td {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid black;
+  align-content: end;
+}
+
+/* ===== DERECHA ===== */
+.mapa-header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.mapa-header h3 {
+  font-size: 0.65rem;
+  align-content: center;
+  margin: 0;
+}
+
+.mapa-header img {
+  width: 44px;
+  height: 22px;
+}
+
+.mapa-body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.mapa-pcs {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.grid-pcs {
+  border: 1px solid black;
+  height: 178px;
+  width: 100%;
+  display: grid;
+  gap: 0;
+  justify-content: center;
+  align-content: start;
+}
+
+.pc-box {
+  width: 100%;
+  height: 22px;
+  aspect-ratio: 1 / 1;
+  border-radius: 3px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pc-box img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+}
+
+.mapa-extras {
+  width: 30%;
+  height: min-content;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: center;
+  align-content: start;
+  gap: 4px 5px;
+}
+
+.extra-box {
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  align-items: center;
+}
+
+.extra-box span {
+  font-size: 0.5rem;
+  font-weight: 600;
+}
+
+.extra-box img {
+  height: 18px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.mapa-aula {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.aula-grid {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+}
+
+.aula-col-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.aula-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+}
+
+.aula-col h3 {
+  margin: 0 0 5px 0;
+  border-bottom: 1px solid black;
+  font-size: 0.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.activo-aula {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.activo-aula span {
+  font-size: 0.45rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.activo-aula img {
+  height: 23px;
+  width: 33px;
+}
+
+/*ESTILOS EXTRA AÑADIDOS A LOS BOTONES DE CONFIRMACIÓN*/
+.modal-buttons.ambientes {
+  width: 95%;
+  position: absolute;
+  bottom: 12px;
+}
+
+.modal-buttons .ambientes button {
+  padding: 0.1rem 0.5rem;
+}

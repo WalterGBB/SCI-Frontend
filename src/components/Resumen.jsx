@@ -1,13 +1,6 @@
 import { forwardRef } from 'react'
 import '../styles/Resumen.css'
-import flecha from '../assets/flecha.png'
-import signo from '../assets/signo.png'
-import ubicacion from '../assets/ubicacion.png'
-import tiempo from '../assets/tiempo.png'
-import arrow from '../assets/arrow.png'
-import editar from '../assets/editar.png'
-
-import { calcularTiempoPromedio } from "../utils/tiempoPromedio"
+import { calcularTiempoPromedio, calcularUbicacionMayor } from "../utils/helperKPIs"
 
 const Resumen = forwardRef(({ incidents, onAtenderClick }, ref) => {
     // Número total de incidencias registradas
@@ -43,26 +36,8 @@ const Resumen = forwardRef(({ incidents, onAtenderClick }, ref) => {
         background: `conic-gradient(#22c55e 0deg ${anguloGrado}deg, #6b7280 ${anguloGrado}deg 360deg)`
     }
 
-    // Calcular ubicación con mayor número de incidencias
-    const calcularUbicacionMayor = () => {
-        if (incidents.length === 0) return "Sin datos"
-
-        // Contar incidencias por procedencia
-        const contadorProcedencia = {}
-        incidents.forEach(incidencia => {
-            const procedencia = incidencia.procedencia
-            contadorProcedencia[procedencia] = (contadorProcedencia[procedencia] || 0) + 1
-        })
-
-        // Encontrar la ubicación con más incidencias
-        const ubicacionMayor = Object.keys(contadorProcedencia).reduce((a, b) =>
-            contadorProcedencia[a] > contadorProcedencia[b] ? a : b
-        )
-
-        return ubicacionMayor
-    }
-
-    const ubicacionMayorIncidencias = calcularUbicacionMayor()
+    // Calcular ubicación con mayor número de incidencias registradas
+    const ubicacionMayorIncidencias = calcularUbicacionMayor(incidents)
 
     // Calcular tiempo promedio de respuesta
     const tiempoPromedioRespuesta = calcularTiempoPromedio(incidents)
@@ -81,16 +56,16 @@ const Resumen = forwardRef(({ incidents, onAtenderClick }, ref) => {
                 </div>
 
                 <div className="kpi pendientes">
-                    <h2><img src={signo} alt="signo-exclamación" />{pendientes.length}</h2>
+                    <h2><img src='https://res.cloudinary.com/francode/image/upload/v1778545870/signo_ierjcs.png' alt="signo-exclamación" />{pendientes.length}</h2>
                     <p>Incidencias<br />sin resolver</p>
                     <button className="btn-atender" onClick={onAtenderClick}>
-                        <img src={editar} alt="editar-icon" />atender
+                        <img src='https://res.cloudinary.com/francode/image/upload/v1778545786/editar_waws8f.png' alt="editar-icon" />atender
                     </button>
                 </div>
 
-                <div className='detalles'>
-                    <img src={flecha} alt="flecha" className='flecha' />
-                    <ul className="detalle-lista">
+                <div className='contabilizacion'>
+                    <img src='https://res.cloudinary.com/francode/image/upload/v1778545818/flecha_s5mau7.png' alt="flecha" className='flecha' />
+                    <ul className="lista">
                         <li><span className="rojo">{altas}</span> incidencias de prioridad alta</li>
                         <li><span className="naranja">{medias}</span> incidencias de prioridad media</li>
                         <li><span className="verde">{bajas}</span> incidencias de prioridad baja</li>
@@ -98,16 +73,16 @@ const Resumen = forwardRef(({ incidents, onAtenderClick }, ref) => {
                 </div>
 
                 <div className="extras">
-                    <div>
-                        <img src={ubicacion} alt="ubicación-ícono" />
+                    <div className='extra'>
+                        <img src='https://res.cloudinary.com/francode/image/upload/v1778545879/ubicacion_jhydrl.png' alt="ubicación-ícono" />
                         <p>Ubicación con mayor número<br />de incidencias registradas</p>
-                        <p><img src={arrow} alt="arrow-icon" /></p>
+                        <p><img src='https://res.cloudinary.com/francode/image/upload/v1778545752/arrow_m2erpg.png' alt="arrow-icon" /></p>
                         <p className='ubicacion'>{ubicacionMayorIncidencias}</p>
                     </div>
-                    <div>
-                        <img src={tiempo} alt="reloj-icono" />
+                    <div className='extra'>
+                        <img src='https://res.cloudinary.com/francode/image/upload/v1778545876/tiempo_sunotv.png' alt="reloj-icono" />
                         <p>Tiempo promedio de<br />respuesta a incidencias</p>
-                        <p><img src={arrow} alt="arrow-icon" /></p>
+                        <p><img src='https://res.cloudinary.com/francode/image/upload/v1778545752/arrow_m2erpg.png' alt="arrow-icon" /></p>
                         <p className='tiempo'>{tiempoPromedioRespuesta}</p>
                     </div>
                 </div>

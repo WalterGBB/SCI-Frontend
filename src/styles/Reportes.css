@@ -13,7 +13,7 @@
   font-weight: bold;
   color: #111;
   text-shadow: 2.5px 2.2px 2px #10b981;
-  margin-bottom: 1.2rem;
+  align-content: center;
 }
 
 /* Intervalos */
@@ -21,6 +21,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-content: center;
   gap: 3rem;
   margin-right: 15px;
   margin-bottom: 2rem;
@@ -113,100 +114,6 @@
 .average {
   position: relative;
   z-index: 2;
-}
-
-/* Contenedor con scroll horizontal */
-.tabla-container {
-  width: 100%;
-  overflow-x: auto;
-  justify-items: center;
-}
-
-/* Tabla */
-.tabla {
-  max-width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
-  min-width: 900px; /* para forzar scroll en pantallas pequeñas */
-}
-
-.tabla th {
-  background-color: #626262;
-  height: 40px;
-  color: white;
-  font-weight: bold;
-  font-size: 0.85rem;
-}
-
-.tabla th,
-.tabla td {
-  border: 1px solid #333;
-  padding: 0.3rem;
-  text-align: center;
-}
-
-/* Definir ancho fijo por columna */
-.col-fecha {
-  max-width: 95px;
-  min-width: 95px;
-}
-.col-curso {
-  max-width: 120px;
-  min-width: 120px;
-}
-.col-docente {
-  max-width: 120px;
-  min-width: 120px;
-}
-.col-procedencia {
-  max-width: 120px;
-  min-width: 120px;
-}
-.col-activos {
-  max-width: 120px;
-  min-width: 120px;
-}
-.col-prioridad {
-  max-width: 95px;
-  min-width: 95px;
-}
-.col-observaciones {
-  max-width: 180px;
-  min-width: 180px;
-}
-.col-estado {
-  max-width: 90px;
-  min-width: 90px;
-}
-
-.prioridad.alta {
-  color: red;
-  font-weight: bold;
-}
-
-.prioridad.media {
-  color: orange;
-  font-weight: bold;
-}
-
-.prioridad.baja {
-  color: green;
-  font-weight: bold;
-}
-
-.estado.resuelta {
-  background-color: #14db5d;
-  font-weight: bold;
-}
-
-.estado.pendiente {
-  background-color: #ff9e59;
-  font-weight: bold;
-}
-
-.paginacion {
-  font-size: 1rem;
-  margin-bottom: 1rem;
 }
 
 .descargas {

@@ -200,37 +200,41 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
         code = null
     ) => {
         let item
-        // =========================
-        // OBTENER ITEM
-        // =========================
+
+        // Obtener el elemento según el tipo
         if (type === 'curso') {
             item = cursos.find(c => c.id === id)
-        }
-        else if (type === 'extra') {
+        } else if (type === 'extra') {
             item = formLaboratorio.activos.find(
                 activo => activo.code === code
             )
-        }
-        else if (type === 'activo-aula') {
+        } else if (type === 'activo-aula') {
             item = formAula.activos.find(
                 activo => activo.code === code
             )
         }
+
         if (!item) return
+
         const nuevoEstado = !item.active
-        // =========================
-        // MENSAJE
-        // =========================
+
+        // Usar nombre para cursos y code para activos
+        const itemLabel =
+            type === 'curso'
+                ? item.nombre
+                : item.code?.replaceAll('_', ' ') || 'Sin nombre'
+
+        // Configurar mensaje de confirmación
         setConfirmMessage(
             <>
-                ¿Desea marcar el{" "}
+                ¿Desea marcar el{' '}
                 <b>
                     {type === 'curso'
                         ? 'curso'
                         : 'activo'}
-                </b>{" "}
-                <b>"{item.code.replaceAll('_', ' ')}"</b>{" "}
-                como{" "}
+                </b>{' '}
+                <b>"{itemLabel}"</b>{' '}
+                como{' '}
                 <b className={nuevoEstado ? 'activo' : 'inactivo'}>
                     {nuevoEstado ? 'activo' : 'inactivo'}
                 </b>
@@ -238,25 +242,23 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
             </>
         )
 
-        // =========================
-        // ACCIÓN
-        // =========================
+        // Configurar acción a ejecutar al confirmar
         setConfirmAction(() => async () => {
             try {
-                // =========================
-                // CURSOS
-                // =========================
+                // Actualizar estado de un curso
                 if (type === 'curso') {
                     const updated = await cursosService.toggleActive(id, {
                         active: nuevoEstado
                     })
+
                     setCursos(prev =>
-                        prev.map(c => c.id === id ? updated : c)
+                        prev.map(c =>
+                            c.id === id ? updated : c
+                        )
                     )
                 }
-                // =========================
-                // ACTIVOS LABORATORIO
-                // =========================
+
+                // Actualizar activo de laboratorio
                 else if (type === 'extra') {
                     setFormLaboratorio(prev => ({
                         ...prev,
@@ -269,11 +271,9 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                                 : activo
                         )
                     }))
-
                 }
-                // =========================
-                // ACTIVOS AULA
-                // =========================
+
+                // Actualizar activo de aula
                 else if (type === 'activo-aula') {
                     setFormAula(prev => ({
                         ...prev,
@@ -287,6 +287,7 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                         )
                     }))
                 }
+
             } catch (error) {
                 if (error.response?.status === 401) {
                     window.alert('Sesión expirada, vuelva a iniciar sesión')
@@ -297,11 +298,14 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                         'Error al actualizar el estado'
                     )
                 }
+
                 console.error(error)
             } finally {
                 setConfirmOpen(false)
             }
         })
+
+        // Mostrar modal de confirmación
         setConfirmOpen(true)
     }
 

@@ -86,7 +86,7 @@ const Users = forwardRef(({ id, users, setUsers, loading }, ref) => {
 
             setEditingUser(null)
         } catch (error) {
-            (
+            toast.error(
                 error?.response?.data?.error ||
                 'Error al actualizar el usuario'
             )

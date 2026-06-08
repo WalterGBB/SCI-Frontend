@@ -183,10 +183,16 @@ const Menu = ({ user, handleLogout }) => {
     // Hook para cargar los usuarios al montar el componente (necesario para la sección de usuarios y los forms de registro y edición de incidencia)
     useEffect(() => {
         const fetchUsers = async () => {
-            const data = await userService.getAll()
-            setUsers(data)
-            setLoading(false)
+            try {
+                const data = await userService.getAll()
+                setUsers(data)
+            } catch (error) {
+                console.error('Error al cargar usuarios:', error)
+            } finally {
+                setLoading(false)
+            }
         }
+
         fetchUsers()
     }, [])
 

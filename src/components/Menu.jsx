@@ -264,7 +264,7 @@ const Menu = ({ user, handleLogout }) => {
                             ⏻ salir
                         </button>
 
-                        {user.rol === 'Administrador' && (
+                        {user.rol === 'Administrador' || user.rol === 'Administrativo' && (
                             <button
                                 className="btn-db-admin"
                                 title="Gestionar Cursos"

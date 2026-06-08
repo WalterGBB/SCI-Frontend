@@ -195,9 +195,11 @@ const Users = forwardRef(({ id, users, setUsers, loading }, ref) => {
                 })}
             </div>
             {
+                /*
                 loading && (
                     <Notificacion mensaje="Cargando Usuarios" />
                 )
+                    */
             }
         </section>
     )

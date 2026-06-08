@@ -1,5 +1,8 @@
 import axios from 'axios'
-const baseUrl = `${import.meta.env.VITE_API_URL}/api/login`
+
+// Capturamos la variable de entorno. Si no existe (en local), usamos string vacío.
+const API_URL = import.meta.env.VITE_API_URL || ''
+const baseUrl = `${API_URL}/api/login`
 
 const login = async credentials => {
     const response = await axios.post(baseUrl, credentials)

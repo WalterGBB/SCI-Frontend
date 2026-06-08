@@ -1,5 +1,7 @@
 import axios from 'axios'
-const baseUrl = `${import.meta.env.VITE_API_URL}/api/login/google`
+
+const API_URL = import.meta.env.VITE_API_URL || ''
+const baseUrl = `${API_URL}/api/login/google`
 
 const loginWithGoogle = async (code) => {
     const response = await axios.post(baseUrl, { code })

@@ -1,6 +1,8 @@
 import axios from 'axios'
 
-const baseUrl = `${import.meta.env.VITE_API_URL}/api/users`
+// Capturamos la variable de entorno. Si no existe (en local), usamos string vacío.
+const API_URL = import.meta.env.VITE_API_URL || ''
+const baseUrl = `${API_URL}/api/users`
 
 // Función para almacenar el token de autenticación, inicialmente es null
 const getConfig = () => {

@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const baseUrl = `${import.meta.env.VITE_API_URL}/api/categorias`
+const API_URL = import.meta.env.VITE_API_URL || ''
+const baseUrl = `${API_URL}/api/categorias`
 
 const getConfig = () => {
     const loggedUser = JSON.parse(localStorage.getItem('loggedUser'))

@@ -1,8 +1,10 @@
 // Importamos la librería axios para hacer peticiones HTTP al backend
 import axios from 'axios'
 
+// Capturamos la variable de entorno. Si no existe (en local), usamos string vacío.
+const API_URL = import.meta.env.VITE_API_URL || ''
 // Definimos la URL base para acceder a los endpoints de incidents
-const baseUrl = `${import.meta.env.VITE_API_URL}/api/incidents`
+const baseUrl = `${API_URL}/api/incidents`
 
 // Función para almacenar el token de autenticación, inicialmente es null
 const getConfig = () => {

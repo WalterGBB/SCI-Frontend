@@ -20,6 +20,8 @@ import PERMISOS from '../utils/auth/permisosRol'
 import ModalGestion from './ModalGestion'
 
 const Menu = ({ user, handleLogout }) => {
+    const [menuOpen, setMenuOpen] = useState(false)
+
     // Refs a cada sección del DOM
     const refResumen = useRef(null)
     const refNueva = useRef(null)
@@ -57,6 +59,9 @@ const Menu = ({ user, handleLogout }) => {
         }
 
         window.addEventListener('scroll', detectEnd)
+        if (window.innerWidth <= 768) {
+            setMenuOpen(false)
+        }
     }
 
     useEffect(() => {
@@ -203,7 +208,13 @@ const Menu = ({ user, handleLogout }) => {
 
     return (
         <div className="container-menu">
-            <aside className="sidebar">
+            <button
+                className="menu-toggle"
+                onClick={() => setMenuOpen(!menuOpen)}
+            >
+                ☰
+            </button>
+            <aside className={`sidebar ${menuOpen ? 'open' : ''}`}>
                 <div className="logo">
                     <img
                         src='https://res.cloudinary.com/francode/image/upload/v1778545865/sci-logo-menu_lgeaxs.png'

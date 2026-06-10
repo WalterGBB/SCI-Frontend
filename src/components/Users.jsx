@@ -7,11 +7,12 @@ import userService from '../services/users'
 import { nombreCorto } from '../utils/nombreCorto'
 
 const ROLES = [
-    'Docente',
+    'Administrador',
     'Administrativo',
-    'OTI',
     'Directivo',
-    'Administrador'
+    'Docente',
+    'Jefe de Laboratorio',
+    'OTI'
 ]
 
 const Users = forwardRef(({ id, users, setUsers, loading }, ref) => {

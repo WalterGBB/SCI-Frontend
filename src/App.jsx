@@ -5,6 +5,7 @@ import Notification from '../src/components/Notificacion'
 
 import Login from './components/Login'
 import Menu from './components/Menu'
+import Footer from './components/Footer'
 
 import loginService from './services/login'
 
@@ -104,22 +105,32 @@ function App() {
         position="top-right"
         reverseOrder={false}
       />
-      {
-        user === null ? (
-          <Login
-            handleLogin={handleLogin}
-            username={username}
-            handleUsername={handleUsername}
-            password={password}
-            handlePassword={handlePassword}
-            setUser={setUser}
-            handleGoogleLogin={handleGoogleLogin}
-          />
-        ) : (
 
-          <Menu user={user} handleLogout={handleLogout} />
-        )
-      }
+      <div className="app-container">
+        <div className="app-content">
+          {
+            user === null ? (
+              <Login
+                handleLogin={handleLogin}
+                username={username}
+                handleUsername={handleUsername}
+                password={password}
+                handlePassword={handlePassword}
+                setUser={setUser}
+                handleGoogleLogin={handleGoogleLogin}
+              />
+            ) : (
+              <Menu
+                user={user}
+                handleLogout={handleLogout}
+              />
+            )
+          }
+        </div>
+
+        <Footer />
+      </div>
+
       {
         iniciandoSesion && (
           <Notification mensaje="Iniciando sesión..." />

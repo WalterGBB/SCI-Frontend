@@ -10,6 +10,12 @@ const Login = ({ username, handleUsername, password, handlePassword,
         <div className="container-login">
             <div className="login-left">
                 <form className="login-form" onSubmit={handleLogin}>
+                    <div className="mobile-logo">
+                        <img
+                            src="https://res.cloudinary.com/francode/image/upload/v1778545865/sci-logo-menu_lgeaxs.png"
+                            alt="Logo SCI"
+                        />
+                    </div>
 
                     {/* LOGIN GOOGLE */}
                     <div className="btn-google-container">
@@ -70,6 +76,30 @@ const Login = ({ username, handleUsername, password, handlePassword,
                         </div>
                     </div>
                 </form>
+
+                <div className="mobile-logos">
+                    <a
+                        href="https://www.unc.edu.pe/"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        <img
+                            src="https://res.cloudinary.com/francode/image/upload/v1778545882/unc_us4bkp.png"
+                            alt="UNC"
+                        />
+                    </a>
+
+                    <a
+                        href="https://www.unc.edu.pe/escuela-academico-profesional-de-ingenieria-de-sistemas/"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        <img
+                            src="https://res.cloudinary.com/francode/image/upload/v1778545800/epis_fylrm7.png"
+                            alt="EPIS"
+                        />
+                    </a>
+                </div>
             </div>
 
             <div className="login-right">
@@ -81,8 +111,10 @@ const Login = ({ username, handleUsername, password, handlePassword,
                     <img src='https://res.cloudinary.com/francode/image/upload/v1778545800/epis_fylrm7.png' alt="logo superior" className="logo-top" />
                 </a>
 
-                <img src='https://res.cloudinary.com/francode/image/upload/v1778545861/sci-logo_oele3h.png' alt="logo SCI" className="eye-logo" />
-                <p className="sci-title">SCI</p>
+                <img
+                    className="logo-center"
+                    src='https://res.cloudinary.com/francode/image/upload/v1778545865/sci-logo-menu_lgeaxs.png' alt="logo SCI"
+                />
 
                 <a
                     href="https://www.unc.edu.pe/"

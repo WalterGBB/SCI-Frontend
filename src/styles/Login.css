@@ -4,14 +4,10 @@
   box-sizing: border-box;
 }
 
-body,
-html {
-  height: 100%;
-}
-
 .container-login {
   display: flex;
-  height: 100vh;
+  flex: 1;
+  width: 100%;
 }
 
 .login-left,
@@ -38,11 +34,16 @@ html {
 }
 
 .login-form {
-  width: 50%;
-  max-width: 400px;
+  width: 90%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
+}
+
+.mobile-logo,
+.mobile-logos {
+  display: none;
 }
 
 /* ---------- GOOGLE ---------- */
@@ -58,7 +59,8 @@ html {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 100%;
+  width: 90%;
+  max-width: 320px;
   padding: 12px;
   background-color: #ffffff;
   color: #3c4043;
@@ -86,7 +88,8 @@ html {
 
 .admin-login {
   margin-top: 10px;
-  width: 100%;
+  width: 80%;
+  max-width: 320px;
 }
 
 .admin-toggle {
@@ -122,19 +125,21 @@ html {
   max-height: 300px; /* suficiente para inputs + botón */
   opacity: 1;
   transform: translateY(0);
+  align-items: center;
 }
 
 .admin-form label {
   color: #6fffa3;
-  font-size: rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 
 .form-row {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  gap: 5%;
+  gap: 8px;
+  width: 100%;
 }
 
 .admin-form input {
@@ -143,6 +148,8 @@ html {
   border: 2px solid #00ff88;
   border-radius: 8px;
   outline: none;
+  width: 80%;
+  max-width: 180px;
 }
 
 .login-helper-text {
@@ -157,11 +164,11 @@ html {
   padding-top: 10px;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .btn-login button {
   background-color: #00ea81;
-  width: 40%;
   color: #3c4043;
   border: 1px solid #dadce0;
   border-radius: 6px;
@@ -170,6 +177,8 @@ html {
   padding: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 70%;
+  max-width: 140px;
 }
 
 .btn-login button:hover {
@@ -184,26 +193,25 @@ html {
 
 .logo-top {
   position: absolute;
-  top: 50px;
-  left: 50px;
-  width: 100px;
+  top: 5vh;
+  left: 2vw;
+  height: 10vw;
+  min-height: 65px;
+  max-height: 110px;
 }
 
-.eye-logo {
-  width: 270px;
-}
-
-.sci-title {
-  margin-top: 10px;
-  font-weight: 600;
-  font-size: 2.5rem;
+.logo-center {
+  height: 30vw;
+  margin-bottom: 35px;
 }
 
 .logo-bottom {
   position: absolute;
-  bottom: 30px;
-  right: 30px;
-  width: 80px;
+  bottom: 3vh;
+  right: 3vw;
+  height: 10vw;
+  min-height: 65px;
+  max-height: 110px;
 }
 
 .logo-top:hover,
@@ -211,4 +219,73 @@ html {
   transform: scale(1.12);
   transition: transform 0.4s;
   filter: brightness(1.2);
+}
+
+/*Para tablets y laptops pequeñas*/
+@media (max-width: 1136px) {
+}
+@media (max-width: 710px) {
+}
+
+/*Para celulares*/
+@media (max-width: 450px) {
+  .mobile-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .mobile-logo img {
+    width: 140px;
+    background-color: #d6d6d6;
+    border-radius: 50%;
+  }
+
+  .login-right {
+    display: none;
+  }
+
+  .container-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-left {
+    flex: 1;
+    width: 100%;
+    padding: 20px;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #5e5e5e;
+  }
+
+  .login-form {
+    width: 100%;
+    margin: auto;
+  }
+
+  .admin-form.open {
+    align-items: center;
+  }
+
+  .mobile-logos {
+    margin: 30px auto auto 8px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 25px;
+  }
+
+  .mobile-logos img {
+    height: 90px;
+  }
+
+  .mobile-logos img:hover {
+    transform: scale(1.12);
+    transition: transform 0.4s;
+    filter: brightness(1.2);
+  }
 }

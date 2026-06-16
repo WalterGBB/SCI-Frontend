@@ -1,0 +1,89 @@
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
+
+.container-menu {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: row;
+
+  background-color: #d6d6d6;
+}
+
+/* =========================
+   CONTENIDO PRINCIPAL
+========================= */
+
+.main-content {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  transition:
+    margin-left 0.35s ease,
+    width 0.35s ease;
+}
+
+/* =========================
+   SECCIONES
+========================= */
+
+.secciones {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 0;
+}
+
+/* =========================
+   CADA SECCIÓN
+========================= */
+
+.secciones section {
+  width: 100%;
+  min-height: 100svh;
+
+  scroll-margin-top: 20px;
+}
+
+/* =========================
+   TABLETS
+========================= */
+
+@media (max-width: 1024px) {
+  .container-menu {
+    width: 100%;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+}
+
+/* =========================
+   MÓVILES
+========================= */
+
+@media (max-width: 768px) {
+  .container-menu {
+    width: 100%;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+
+  .secciones {
+    width: 100%;
+  }
+
+  .secciones section {
+    min-height: auto;
+  }
+}

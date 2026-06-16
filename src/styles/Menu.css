@@ -8,49 +8,102 @@ ul {
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 /* Contenedor principal */
 .container-menu {
   background-color: #d6d6d6;
   display: flex;
   flex-direction: row;
+  width: 100%;
+  flex: 1;
   gap: 0;
-  height: auto;
 }
 
 .menu-toggle {
-  display: none;
+  z-index: 2001;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+  display: flex;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  padding: 0.1rem 0.5rem;
+  border-radius: 10px;
+  background-color: #20aa47;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.08);
+
+  box-shadow: 0 0 10px rgba(34, 186, 77, 0.4);
 }
 
 /* Sidebar */
 .sidebar {
-  position: sticky !important;
+  position: fixed;
   height: 100vh;
-  width: 25vw;
+  width: clamp(260px, 22vw, 320px);
   background-color: #4b4b4b;
   color: white;
-  display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1.5rem 1rem 2rem 1rem;
   top: 0;
+  left: 0;
+  z-index: 5;
+  gap: 0.5rem;
+
+  display: flex;
+
+  /* Estado oculto */
+  transform: translateX(-100%);
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 250ms ease,
+    visibility 250ms ease;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #22ba4d;
+  border-radius: 999px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
 }
 
 .logo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1rem;
   text-align: center;
-  margin-bottom: 1rem;
-  height: 35%;
 }
 
 .logo img {
-  width: 120px;
+  width: clamp(90px, 8vw, 120px);
   background-color: #d6d6d6;
   border-radius: 50%;
   cursor: pointer;
@@ -64,19 +117,17 @@ html {
   filter: brightness(110%);
 }
 
-.logo .info {
-  height: 44px;
-}
-
 .user-name {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 1vw, 1.2rem);
   font-weight: bold;
   color: #22ba4d;
   text-align: center;
+  /*le dice al navegador que respete los saltos de línea (\n) que vengan dentro del string.*/
+  white-space: pre-line;
 }
 
 .rol {
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 0.8vw, 0.95rem);
   color: #ccc;
   text-align: center;
 }
@@ -94,7 +145,7 @@ html {
   color: white;
   font-weight: bold;
   font-size: 0.95rem;
-  padding: 0.6rem 1.5rem;
+  padding: 0.5rem 1.4rem;
   border: 2px solid transparent;
   border-radius: 10px;
   cursor: pointer;
@@ -102,6 +153,10 @@ html {
 
 .btn:hover {
   filter: brightness(120%);
+}
+
+.menu-toggle:active {
+  transform: scale(0.95);
 }
 
 .btn.active {
@@ -138,18 +193,6 @@ html {
   color: #e5e5e5;
 }
 
-/* Secciones del sistema */
-.secciones {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.secciones section {
-  min-height: 100vh;
-  max-height: auto;
-}
-
 .sidebar-footer-actions {
   display: flex;
   flex-direction: row;
@@ -157,12 +200,8 @@ html {
   gap: 1rem;
   align-items: center;
   justify-content: center;
-  margin-top: 0.1rem;
-}
-
-/* Ajuste al botón salir para que comparta el ancho */
-.sidebar-footer-actions {
-  padding: 0.8rem 1rem; /* Un poco menos de padding lateral para que quepa bien */
+  margin-top: auto;
+  padding: 0.8rem 0.5rem 0;
 }
 
 /* --- CONFIGURACIÓN ESTÁNDAR DEL BOTÓN --- */
@@ -215,50 +254,4 @@ html {
   font-size: 0.7rem; /* Un pelín más pequeña para dar aire */
   color: #10b981;
   bottom: 6px;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 2000;
-
-    width: 40px;
-    height: 40px;
-
-    border: none;
-    border-radius: 10px;
-
-    background-color: #20aa47;
-    color: white;
-
-    font-size: 1.5rem;
-    font-weight: bold;
-
-    cursor: pointer;
-  }
-
-  .sidebar {
-    position: fixed !important;
-
-    left: -280px;
-    top: 0;
-
-    width: 260px;
-    height: 100vh;
-
-    z-index: 1500;
-
-    transition: left 0.3s ease;
-  }
-
-  .sidebar.open {
-    left: 0;
-  }
-
-  .secciones {
-    width: 100%;
-  }
 }

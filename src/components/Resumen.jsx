@@ -56,7 +56,10 @@ const Resumen = forwardRef(({ incidents, onAtenderClick }, ref) => {
                 </div>
 
                 <div className="kpi pendientes">
-                    <h2><img src='https://res.cloudinary.com/francode/image/upload/v1778545870/signo_ierjcs.png' alt="signo-exclamación" />{pendientes.length}</h2>
+                    <h2>
+                        <img className='signo' src='https://res.cloudinary.com/francode/image/upload/v1778545870/signo_ierjcs.png' alt="signo-exclamación" />
+                        {pendientes.length}
+                    </h2>
                     <p>Incidencias<br />sin resolver</p>
                     <button className="btn-atender" onClick={onAtenderClick}>
                         <img src='https://res.cloudinary.com/francode/image/upload/v1778545786/editar_waws8f.png' alt="editar-icon" />atender
@@ -75,13 +78,13 @@ const Resumen = forwardRef(({ incidents, onAtenderClick }, ref) => {
                 <div className="extras">
                     <div className='extra'>
                         <img src='https://res.cloudinary.com/francode/image/upload/v1778545879/ubicacion_jhydrl.png' alt="ubicación-ícono" />
-                        <p>Ubicación con mayor número<br />de incidencias registradas</p>
+                        <p>Ubicación con mayor número de incidencias registradas</p>
                         <p><img src='https://res.cloudinary.com/francode/image/upload/v1778545752/arrow_m2erpg.png' alt="arrow-icon" /></p>
                         <p className='ubicacion'>{ubicacionMayorIncidencias}</p>
                     </div>
                     <div className='extra'>
                         <img src='https://res.cloudinary.com/francode/image/upload/v1778545876/tiempo_sunotv.png' alt="reloj-icono" />
-                        <p>Tiempo promedio de<br />respuesta a incidencias</p>
+                        <p>Tiempo promedio de respuesta a incidencias</p>
                         <p><img src='https://res.cloudinary.com/francode/image/upload/v1778545752/arrow_m2erpg.png' alt="arrow-icon" /></p>
                         <p className='tiempo'>{tiempoPromedioRespuesta}</p>
                     </div>

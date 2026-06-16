@@ -165,27 +165,28 @@ const Estadisticas = forwardRef(({ id, incidents }, ref) => {
                 {/* CIRCULAR - PRIORIDAD */}
                 <div className="grafico">
                     <ResponsiveContainer width="100%" height={210}>
-                        <PieChart margin={{ right: 30 }}> {/* Añadimos un pequeño margen derecho al gráfico */}
+                        <PieChart>
                             <Tooltip />
+
                             <Legend
                                 layout="vertical"
                                 verticalAlign="middle"
                                 align="right"
-                                // El wrapperStyle permite mover la leyenda de forma precisa
                                 wrapperStyle={{
-                                    paddingLeft: "10px",
-                                    right: 80, // Ajusta este número para acercarla o alejarla más
-                                    fontSize: "13px"
+                                    fontSize: "12px"
                                 }}
                             />
+
                             <Pie
                                 data={necesidadesData}
                                 dataKey="value"
                                 nameKey="name"
-                                cx="45%" // Movimos el centro un poco más a la derecha (antes 40%)
+                                cx="50%"
                                 cy="50%"
-                                outerRadius={70}
-                                label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+                                outerRadius={65}
+                                label={({ percent }) =>
+                                    `${(percent * 100).toFixed(0)}%`
+                                }
                             />
                         </PieChart>
                     </ResponsiveContainer>

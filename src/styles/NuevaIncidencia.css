@@ -1,20 +1,20 @@
 .formulario-panel {
   display: flex;
-  flex-direction: row;
-  flex: 1;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.3rem;
+  gap: 1rem;
+  padding: 2rem;
 }
 
 .formulario {
-  background-color: #d6d6d6;
   display: flex;
+  flex: 1 1 340px;
+  max-width: 300px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  width: 30%;
 }
 
 .formulario h1 {
@@ -96,7 +96,7 @@
 }
 
 /* --- Grid del formulario --- */
-.form-grid:not(:last-child) {
+.form-grid {
   display: grid;
   grid-template-columns: repeat(2, 120px);
   gap: 1.5rem 2.2rem;
@@ -131,10 +131,9 @@
 .form-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  height: 50px;
-  gap: 2rem;
+  gap: 15%;
 }
 
 .btn-cancelar,
@@ -142,11 +141,9 @@
   display: flex;
   flex-direction: row;
   gap: 5px;
-  height: 90%;
-  min-width: 120px;
   color: black;
   border: none;
-  padding: 0.6rem 0.8rem;
+  padding: 0.1rem 0.4rem;
   border-radius: 10px;
   font-weight: bold;
   font-size: 0.9rem;
@@ -180,8 +177,9 @@
 }
 
 .lista-reportados {
-  width: 15%;
   display: flex;
+  flex: 1 1 220px;
+  max-width: 150px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -254,8 +252,9 @@
 }
 
 .NImapa-pcs {
-  width: 35%;
   display: flex;
+  flex: 2 1 500px;
+  max-width: 300px;
   flex-direction: column;
   align-items: center;
   border: 1px solid black;
@@ -330,14 +329,12 @@
 }
 
 .NImapa-extras {
-  width: 16%;
   display: grid;
-  grid-template-columns: repeat(2, 70px);
-  align-content: center;
-  align-items: center;
-  justify-content: left;
-  text-align: center;
-  gap: 0.8rem 0.6rem;
+  flex: 1 1 220px;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  max-width: 200px;
+  gap: 0.8rem;
+  justify-items: center;
 }
 
 .activo-extra {
@@ -347,6 +344,7 @@
   justify-content: center;
   border-radius: 5px;
   height: 60px;
+  width: 74px;
   text-align: center;
   background-color: #3bd345;
 }
@@ -449,7 +447,8 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 170px;
+  width: 120%;
+  min-width: 100px;
 }
 
 .category-item {

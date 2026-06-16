@@ -1,11 +1,9 @@
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: "Oxanium", sans-serif;
-}
-
-html,
-body,
-#root {
-  height: 100%;
+  /* outline: 1px solid red; */
 }
 
 .app-container {
@@ -15,6 +13,7 @@ body,
 }
 
 .app-content {
-  flex: 1;
   display: flex;
+  flex: 1;
+  min-height: 0;
 }

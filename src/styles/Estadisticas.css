@@ -1,5 +1,6 @@
 .estadisticas-panel {
   flex: 1;
+  min-width: 0;
   background-color: #d6d6d6;
   display: flex;
   flex-direction: column;
@@ -10,11 +11,10 @@
 /* Encabezado de la vista */
 .encabezado {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  margin-bottom: 15px;
+  gap: 1rem;
   width: 100%;
 }
 
@@ -27,21 +27,17 @@
 
 .filtrosE {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  height: 48px;
   justify-content: center;
-}
-
-.filtrosE span {
-  margin-right: 8px;
+  gap: 1rem;
 }
 
 .filtrosE input[type="date"] {
-  padding: 0.4rem;
-  font-size: 0.9rem;
+  padding: 0.1rem 0.4rem;
+  width: 125px;
   border-radius: 5px;
   border: 1px solid #333;
-  margin-right: 8px;
 }
 
 .btn-generar {
@@ -51,15 +47,13 @@
   background-color: #10b981;
   color: white;
   border: none;
-  padding: 0.6rem 1rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   font-size: 1rem;
   align-items: center;
   margin-left: 20px;
-  height: 40px;
-  width: 128px;
 }
 
 .btn-generar:hover {
@@ -72,8 +66,9 @@
 /* Grillas de gráficos */
 .graficos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
+  margin-top: 1.2rem;
 }
 
 .grafico {
@@ -81,4 +76,5 @@
   border-radius: 1rem;
   padding: 0.15rem 0.4rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  z-index: 1;
 }

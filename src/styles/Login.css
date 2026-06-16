@@ -241,21 +241,26 @@
 
   .container-login {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-height: 0;
   }
 
   .login-left {
     display: flex;
     flex: 1;
+    min-height: 100%;
     width: 100%;
     padding: 20px;
     background-color: #5e5e5e;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .login-form {
     width: 100%;
-    margin: auto;
+    margin: 0;
   }
 
   .admin-form.open {
@@ -263,7 +268,7 @@
   }
 
   .mobile-logos {
-    margin: 30px auto auto 8px;
+    margin-top: 20%;
     width: 100%;
     display: flex;
     flex-direction: row;

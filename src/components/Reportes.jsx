@@ -486,20 +486,22 @@ const Reportes = forwardRef(({ id, incidents, estadisticasRef }, ref) => {
     return (
         <section className="reportes-panel" ref={ref} id={id}>
             {/* Intervalos */}
-            <div className="intervalos">
+            <div className="encabezado">
                 <h1>REPORTES</h1>
-                {["DIARIO", "MENSUAL", "CICLO ACADÉMICO"].map((btn) => (
-                    <button
-                        key={btn}
-                        className={intervalo === btn ? "activo" : ""}
-                        onClick={() => {
-                            setIntervalo(btn)
-                            setVisible(2)
-                        }}
-                    >
-                        {btn}
-                    </button>
-                ))}
+                <div className="intervalos">
+                    {["DIARIO", "MENSUAL", "CICLO ACADÉMICO"].map((btn) => (
+                        <button
+                            key={btn}
+                            className={intervalo === btn ? "activo" : ""}
+                            onClick={() => {
+                                setIntervalo(btn)
+                                setVisible(2)
+                            }}
+                        >
+                            {btn}
+                        </button>
+                    ))}
+                </div>
             </div>
 
             {/* Indicadores */}

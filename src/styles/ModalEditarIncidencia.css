@@ -1,21 +1,28 @@
 .MoEd-overlay {
+  display: flex;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  display: flex;
+  overflow-y: auto;
+  background: #00000073;
   justify-content: center;
   align-items: center;
   z-index: 3; /* Asegura que el modal se muestre por encima de otros elementos*/
 }
 
 .MoEd-editar {
+  display: flex;
+  flex-wrap: wrap;
   background: #f4f4f4;
   border-radius: 12px;
-  width: 770px;
-  height: 450px;
-  display: flex;
-  gap: 12px;
+  min-width: 60vw;
+  max-width: 80vw;
+  height: 82vh;
+  column-gap: 12px;
+  row-gap: 14px;
   padding: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  justify-content: center;
 }
 
 .Mo,
@@ -27,8 +34,8 @@
 
 /* Formulario */
 .MoEd-form {
-  width: 36%;
   display: flex;
+  flex: 0 1 260px;
   flex-direction: column;
   gap: 10px;
   justify-content: center;
@@ -59,8 +66,9 @@
 
 .MoEd-grid {
   display: grid;
-  grid-template-columns: repeat(2, 120.5px);
+  grid-template-columns: repeat(2, minmax(100px, 120px));
   gap: 12px;
+  justify-content: center;
 }
 
 .MoEd-grid select,
@@ -74,8 +82,9 @@
 
 .MoEd-buttons {
   display: flex;
+  width: 100%;
+  max-height: 40px;
   justify-content: space-between;
-  margin-top: 10px;
 }
 
 .MoEd-buttons button:hover {
@@ -118,8 +127,8 @@
 /* Lista de reportados */
 
 .MoEd-lista-reportados {
-  width: 16%;
   display: flex;
+  flex: 0 1 160px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -193,10 +202,10 @@
 
 .MoEd-mapa-pcs {
   display: flex;
+  flex: 0 1 320px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 30%;
 }
 
 .header h3 {
@@ -225,13 +234,14 @@
   align-items: center;
   border-radius: 4px;
   cursor: pointer;
+  font-size: clamp(0.65rem, 1vw, 0.85rem);
 }
 
 .MoEd-pc-numero {
   position: absolute;
-  top: 2px;
-  font-size: 0.45rem;
-  font-weight: bold;
+  top: clamp(1px, 3%, 4px);
+  font-size: clamp(0.5rem, 1.2vw, 0.7rem);
+  font-weight: 600;
 }
 
 .MoEd-pc-docente {
@@ -249,12 +259,12 @@
 }
 
 .MoEd-mapa-extras {
-  width: 16%;
   display: grid;
-  grid-template-columns: repeat(2, 52px);
+  flex: 1 1 120px;
+  grid-template-columns: repeat(auto-fit, minmax(52px, 54px));
   align-content: center;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
   text-align: center;
   gap: 0.8rem 0.6rem;
 }

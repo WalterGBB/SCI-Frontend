@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 import ModalConfirmacion from './ModalConfirmacion'
 import ambientesService from '../services/ambientes'
 import cursosService from '../services/cursos'
@@ -256,6 +257,7 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                             c.id === id ? updated : c
                         )
                     )
+                    toast.success('Curso actualizado correctamente')
                 }
 
                 // Actualizar activo de laboratorio
@@ -271,6 +273,7 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                                 : activo
                         )
                     }))
+                    toast.success('Activo actualizado correctamente')
                 }
 
                 // Actualizar activo de aula
@@ -286,6 +289,7 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                                 : activo
                         )
                     }))
+                    toast.success('Activo actualizado correctamente')
                 }
 
             } catch (error) {
@@ -293,10 +297,7 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                     window.alert('Sesión expirada, vuelva a iniciar sesión')
                     handleLogout()
                 } else {
-                    window.alert(
-                        error.response?.data?.error ||
-                        'Error al actualizar el estado'
-                    )
+                    toast.error('Error al realizar la operación')
                 }
 
                 console.error(error)
@@ -1029,10 +1030,10 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                             <h2>Configuración del Sistema</h2>
                             <p className="sub-verde">Gestión de ambientes</p>
                         </div>
-                        <section className="gestion-section d-flex flex-row gap-3">
+                        <section className="gestion-section ambientes">
                             <div className='container-izquierda'>
                                 <form className="form-ambientes" onSubmit={addAmbiente}>
-                                    <div className="d-flex flex-row justify-content-center align-items-center">
+                                    <div className="ambiente-header-form">
                                         <input
                                             className='input-principal'
                                             type="text"
@@ -1532,13 +1533,13 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                             </p>
                         </div>
 
-                        <section className="gestion-section d-flex flex-row gap-3">
+                        <section className="gestion-section ambientes">
                             <div className='container-izquierda'>
                                 <form
                                     className="form-ambientes"
                                     onSubmit={updateAmbiente}
                                 >
-                                    <div className="d-flex flex-row justify-content-center align-items-center">
+                                    <div className="ambiente-header-form">
                                         <input
                                             className='input-principal'
                                             type="text"
@@ -1965,6 +1966,9 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
 
                 {vista === 'cursos' && (
                     <>
+                        <button className="btn-back" onClick={() => setVista('menu')}>
+                            ← Volver
+                        </button>
                         <div className="modal-gestion-header">
                             <h2>Configuración del Sistema</h2>
                             <p className="sub-verde">Gestión de cursos</p>
@@ -2022,15 +2026,14 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
 
                 {vista === 'categorias' && (
                     <>
+                        <button className="btn-back" onClick={() => setVista('menu')}>
+                            ← Volver
+                        </button>
                         <div className="modal-gestion-header">
                             <h2>Configuración del Sistema</h2>
                             <p className="sub-verde">Gestión de categorías</p>
                         </div>
                         <div className="gestion-content">
-                            <button className="btn-back" onClick={() => setVista('menu')}>
-                                ← Volver
-                            </button>
-
                             <section className="gestion-section">
                                 <h3>Categorías</h3>
 
@@ -2083,18 +2086,17 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
 
                 {vista === 'subcategorias' && categoriaSeleccionada && (
                     <>
+                        <button className="btn-back" onClick={() => {
+                            setVista('categorias');
+                            setCategoriaSeleccionada(null);
+                        }}>
+                            ← Volver
+                        </button>
                         <div className="modal-gestion-header">
                             <h2>Configuración del Sistema</h2>
                             <p className="sub-verde">Gestión de subcategorías</p>
                         </div>
                         <div className="gestion-content">
-                            <button className="btn-back" onClick={() => {
-                                setVista('categorias');
-                                setCategoriaSeleccionada(null);
-                            }}>
-                                ← Volver a Categorías
-                            </button>
-
                             <section className="gestion-section">
                                 <h3>Subcategorías de: <span className="sub-verde">{categoriaSeleccionada.nombre}</span></h3>
 

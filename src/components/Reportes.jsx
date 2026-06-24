@@ -81,7 +81,7 @@ const Reportes = forwardRef(({ id, incidents, estadisticasRef }, ref) => {
 
     // 🔹 KPIs
     const total = filtradas.length
-    const resueltas = filtradas.filter((i) => i.estado === 'Resuelta').length
+    const resueltas = filtradas.filter((i) => i.estado === 'Resuelta' || i.estado === 'Cerrada').length
     const pendientes = filtradas.filter((i) => i.estado === 'Pendiente').length
     const cerradas = filtradas.filter((i) => i.estado === 'Cerrada').length
     const porResueltas = total > 0 ? Math.round((resueltas / total) * 100) : 0

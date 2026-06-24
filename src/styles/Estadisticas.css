@@ -5,7 +5,6 @@
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  margin-bottom: 2rem;
 }
 
 /* Encabezado de la vista */
@@ -66,15 +65,35 @@
 /* Grillas de gráficos */
 .graficos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 1.2rem;
 }
 
 .grafico {
   background-color: #fff;
+  height: clamp(210px, 30vw, 290px);
+  align-content: center;
   border-radius: 1rem;
-  padding: 0.15rem 0.4rem;
+  padding: 0 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   z-index: 1;
+}
+
+/* Tablet */
+@media (max-width: 1200px) {
+  .graficos-grid {
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+  }
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+  .graficos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grafico {
+    padding: 0 0.5rem;
+  }
 }

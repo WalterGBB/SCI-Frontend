@@ -137,7 +137,6 @@ const Historial = forwardRef(({ id, incidents, setIncidents, ambientes, cursosAc
 
         setConfirmAction(() => () => {
             setIncidentToResolve(incident)
-            toast.success('Estado actualizado correctamente')
             setModalOpen(true)
             setConfirmOpen(false)
         })

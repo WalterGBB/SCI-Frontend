@@ -185,7 +185,6 @@ const ModalEditarIncidencia = ({ incident, onClose, onSave, ambientes, cursosAct
     if (!incident) return null
 
     return (
-
         <div className="MoEd-overlay">
             <div className="MoEd-editar">
                 <div className="MoEd-form">
@@ -542,6 +541,7 @@ const ModalEditarIncidencia = ({ incident, onClose, onSave, ambientes, cursosAct
                                 id="responsable"
                                 value={formData.responsable}
                                 onChange={handleChange}
+                                placeholder="Ingresar responsable"
                                 autoComplete="off"
                             />
                         </div>
@@ -556,19 +556,7 @@ const ModalEditarIncidencia = ({ incident, onClose, onSave, ambientes, cursosAct
                                 className="MoEd-detalles"
                             />
                         </div>
-
                     </form>
-
-                    <div className="MoEd-buttons">
-                        <button className="MoEd-btn-cancel" onClick={onClose}>
-                            Cancelar
-                        </button>
-                        <button className="MoEd-btn-confirm" onClick={handleSubmit}>
-                            Confirmar
-                        </button>
-
-                    </div>
-
                 </div>
 
                 <div className="MoEd-lista-reportados">
@@ -793,6 +781,16 @@ const ModalEditarIncidencia = ({ incident, onClose, onSave, ambientes, cursosAct
                         )}
                     </>
                 )}
+
+                <div className="MoEd-buttons">
+                    <button className="MoEd-btn-cancel" onClick={onClose}>
+                        Cancelar
+                    </button>
+                    <button className="MoEd-btn-confirm" onClick={handleSubmit}>
+                        Confirmar
+                    </button>
+
+                </div>
             </div>
         </div>
     )

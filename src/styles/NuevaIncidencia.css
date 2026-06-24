@@ -305,6 +305,7 @@
   background-color: #3bd345;
   border-radius: 5px;
   transition: 0.2s ease;
+  font-size: clamp(0.65rem, 1vw, 0.9rem);
 }
 
 .pc-estudiante:hover,
@@ -316,8 +317,8 @@
 
 .pc-numero {
   position: absolute;
-  top: 2px;
-  font-size: 0.85rem;
+  top: clamp(1px, 6%, 4px);
+  font-size: clamp(0.65rem, 1.2vw, 0.85rem);
   font-weight: 600;
 }
 
@@ -447,7 +448,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 120%;
+  width: 105%;
   min-width: 100px;
 }
 
@@ -476,7 +477,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 210px;
+  min-width: 180px;
   color: #000; /* Para que el texto vuelva a ser negro */
 }
 
@@ -546,4 +547,20 @@
 .custom-select-group:not(:nth-child(4))
   .main-category-list::-webkit-scrollbar-thumb:hover {
   background-color: #555;
+}
+
+@media (width < 426px) {
+  .floating-submenu {
+    left: auto;
+    right: 100%;
+  }
+
+  .category-item {
+    flex-direction: row-reverse;
+    text-align: right;
+  }
+
+  .arrow-right {
+    transform: rotate(180deg);
+  }
 }

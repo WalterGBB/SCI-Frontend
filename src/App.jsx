@@ -50,8 +50,6 @@ function App() {
 
       setUser(user)
 
-      setUsername('')
-      setPassword('')
     } catch (error) {
       toast.error('Usuario o contraseña incorrectos')
 
@@ -59,10 +57,9 @@ function App() {
         'Error al hacer login:',
         error
       )
-
+    } finally {
       setUsername('')
       setPassword('')
-    } finally {
       setIniciandoSesion(false)
     }
   }

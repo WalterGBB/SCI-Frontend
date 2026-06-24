@@ -7,10 +7,10 @@ const Resumen = forwardRef(({ incidents, onAtenderClick }, ref) => {
     const totales = incidents.length
 
     // Número de incidencias resueltas
-    const resueltas = incidents.filter(i => i.estado === true).length
+    const resueltas = incidents.filter(i => i.estado === "Resuelta" || i.estado === "Cerrada").length
 
     // Incidencias pendientes
-    const pendientes = incidents.filter(i => i.estado === false)
+    const pendientes = incidents.filter(i => i.estado === "Pendiente")
 
     // Número de incidencias por prioridad
     const altas = pendientes.filter(i => i.prioridad === 'Alta').length

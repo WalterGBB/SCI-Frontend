@@ -81,8 +81,8 @@ const Estadisticas = forwardRef(({ id, incidents }, ref) => {
     const blueScale = (value, min, max) => {
         if (max === min) return 'rgb(100,149,237)' // todos iguales
         const ratio = (value - min) / (max - min)     // 0..1
-        const lightness = 80 - ratio * 40             // 80% (claro) -> 40% (oscuro)
-        return `hsl(220, 80%, ${lightness}%)`
+        const lightness = 100 - ratio * 40             // 100% (claro) -> 40% (oscuro)
+        return `hsl(220, 100%, ${lightness}%)`
     }
     const values = activosData.map(d => d.value)
     const minVal = values.length ? Math.min(...values) : 0
@@ -164,7 +164,7 @@ const Estadisticas = forwardRef(({ id, incidents }, ref) => {
             <div className="graficos-grid">
                 {/* CIRCULAR - PRIORIDAD */}
                 <div className="grafico">
-                    <ResponsiveContainer width="100%" height={210}>
+                    <ResponsiveContainer width="100%" height="90%">
                         <PieChart>
                             <Tooltip />
 
@@ -194,12 +194,12 @@ const Estadisticas = forwardRef(({ id, incidents }, ref) => {
 
                 {/* BARRAS HORIZONTALES - PROCEDENCIA */}
                 <div className="grafico">
-                    <ResponsiveContainer width="100%" height={210}>
+                    <ResponsiveContainer width="100%" height="90%">
                         <BarChart
                             data={activosData}
                             layout="vertical"
                             barCategoryGap="25%"
-                            margin={{ top: 10, right: 10, left: -10, bottom: 0 }}
+                            margin={{ top: 10, right: 5, left: -24, bottom: 0 }}
                         >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis type="number" tick={{ fontSize: 12 }} />
@@ -219,18 +219,26 @@ const Estadisticas = forwardRef(({ id, incidents }, ref) => {
 
                 {/* BARRAS AGRUPADAS - PRIORIDAD VS PROCEDENCIA */}
                 <div className="grafico">
-                    <ResponsiveContainer width="100%" height={210}>
+                    <ResponsiveContainer width="100%" height="90%">
                         <BarChart
                             barCategoryGap="15%"
                             barGap="6%"
                             data={graficoPrioridades}
-                            margin={{ top: 10, right: 5, left: -35, bottom: 0 }}
+                            margin={{ left: -10 }}
                         >
                             <CartesianGrid strokeDasharray="3 3" align="center" />
                             <XAxis dataKey="name" />
-                            <YAxis />
+                            <YAxis width={50} />
                             <Tooltip />
-                            <Legend layout="horizontal" verticalAlign="top" wrapperStyle={{ paddingBottom: 10 }} />
+                            <Legend align='center' layout="horizontal" verticalAlign="top"
+                                wrapperStyle={{
+                                    left: 0,
+                                    width: '100%',
+                                    paddingBottom: 10,
+                                    textAlign: 'center',
+                                    gap: 5
+                                }}
+                            />
                             <Bar dataKey="Aulas" fill="#2563EB" />
                             <Bar dataKey="Laboratorios" fill="#10B981" />
                         </BarChart>
@@ -239,7 +247,7 @@ const Estadisticas = forwardRef(({ id, incidents }, ref) => {
 
                 {/* LÍNEA - TENDENCIA DIARIA */}
                 <div className="grafico">
-                    <ResponsiveContainer width="100%" height={210}>
+                    <ResponsiveContainer width="100%" height="90%">
                         <LineChart
                             data={graficoTendencia}
                             margin={{ top: 10, right: 5, left: -35, bottom: 0 }}

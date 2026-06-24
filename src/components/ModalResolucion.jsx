@@ -1,16 +1,18 @@
 import { useState } from 'react'
 import '../styles/ModalResolucion.css'
+import toast from 'react-hot-toast'
 
 const ModalResolucion = ({ onClose, onConfirm }) => {
     const [solucion, setSolucion] = useState('')
 
     const handleSubmit = () => {
         if (!solucion.trim()) {
-            alert('Debe ingresar la solución.')
+            toast.error('Debe registrar la solución aplicada.')
             return
         }
 
         onConfirm(solucion)
+        toast.success('Se ha cerrado la incidencia')
     }
 
     return (
@@ -22,6 +24,7 @@ const ModalResolucion = ({ onClose, onConfirm }) => {
                     placeholder="Describe la solución aplicada..."
                     value={solucion}
                     onChange={(e) => setSolucion(e.target.value)}
+                    maxLength={1000}
                 />
 
                 <div className="modal-buttons">

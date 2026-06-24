@@ -125,7 +125,8 @@ const Menu = ({
                             className="btn-salir"
                             onClick={handleLogout}
                         >
-                            ⏻ salir
+                            <img src="https://img.icons8.com/material-outlined/24/shutdown--v1.png" alt="salir-ícono" />
+                            salir
                         </button>
 
                         {(user.rol === 'Administrador' ||

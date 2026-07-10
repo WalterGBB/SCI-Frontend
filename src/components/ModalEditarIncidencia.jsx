@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from "react"
+import { sortAlphabetically } from "../utils/sort";
 import toast from 'react-hot-toast'
 import "../styles/ModalEditarIncidencia.css"
 import { formatFechaLarga } from "../utils/formatFecha"
@@ -241,7 +242,7 @@ const ModalEditarIncidencia = ({ incident, onClose, onSave, ambientes, cursosAct
                             {menuAbierto === 'curso' && (
                                 <div className="custom-dropdown-container">
                                     <ul className="main-category-list">
-                                        {cursosActivos.map((curso) => (
+                                        {sortAlphabetically(cursosActivos, "nombre").map((curso) => (
                                             <li
                                                 key={curso.id}
                                                 className="submenu-item"
@@ -297,7 +298,7 @@ const ModalEditarIncidencia = ({ incident, onClose, onSave, ambientes, cursosAct
                                 <div className="custom-dropdown-container">
                                     <ul className="main-category-list">
 
-                                        {docentes.map((doc) => (
+                                        {sortAlphabetically(docentes, "name").map((doc) => (
 
                                             <li
                                                 key={doc.id}
@@ -414,7 +415,7 @@ const ModalEditarIncidencia = ({ incident, onClose, onSave, ambientes, cursosAct
                             {menuAbierto === 'categoria' && (
                                 <div className="custom-dropdown-container">
                                     <ul className="main-category-list">
-                                        {categorias.map((categoria) => (
+                                        {sortAlphabetically(categorias, "nombre").map((categoria) => (
                                             <li
                                                 key={categoria.id}
                                                 className={`
@@ -437,21 +438,20 @@ const ModalEditarIncidencia = ({ incident, onClose, onSave, ambientes, cursosAct
 
                                                 {activeSubMenu === categoria.id && (
                                                     <ul className="floating-submenu">
-                                                        {(categoria.subcategorias || [])
-                                                            .map((sub) => (
-                                                                <li
-                                                                    key={sub.id}
-                                                                    className="submenu-item"
-                                                                    onClick={() =>
-                                                                        handleSeleccionCompleta(
-                                                                            categoria.nombre,
-                                                                            sub.nombre
-                                                                        )
-                                                                    }
-                                                                >
-                                                                    {sub.nombre}
-                                                                </li>
-                                                            ))}
+                                                        {sortAlphabetically(categoria.subcategorias || [], "nombre").map((sub) => (
+                                                            <li
+                                                                key={sub.id}
+                                                                className="submenu-item"
+                                                                onClick={() =>
+                                                                    handleSeleccionCompleta(
+                                                                        categoria.nombre,
+                                                                        sub.nombre
+                                                                    )
+                                                                }
+                                                            >
+                                                                {sub.nombre}
+                                                            </li>
+                                                        ))}
                                                     </ul>
                                                 )}
                                             </li>

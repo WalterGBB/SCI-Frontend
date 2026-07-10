@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from 'react'
+import { sortAlphabetically } from "../utils/sort";
 import toast from 'react-hot-toast'
 import ModalConfirmacion from './ModalConfirmacion'
 import ambientesService from '../services/ambientes'
@@ -1183,7 +1184,7 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                                             <div className="tabla-gestion-wrapper extras-tabla">
                                                 <table className="tabla-gestion">
                                                     <tbody>
-                                                        {formLaboratorio.activos.map(activo => {
+                                                        {sortAlphabetically(formLaboratorio.activos, "code").map(activo => {
                                                             const data = ACTIVOS[activo.code]
                                                             if (!data) return null
                                                             return (
@@ -1265,7 +1266,7 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                                                                     </td>
                                                                 </tr>
 
-                                                                {activos.map(activo => (
+                                                                {sortAlphabetically(activos, "code").map(activo => (
                                                                     <tr key={activo.code}>
                                                                         <td>
                                                                             {activo.data.nombre}
@@ -1670,7 +1671,7 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                                             <div className="tabla-gestion-wrapper extras-tabla">
                                                 <table className="tabla-gestion">
                                                     <tbody>
-                                                        {formLaboratorio.activos.map(activo => {
+                                                        {sortAlphabetically(formLaboratorio.activos, "code").map(activo => {
                                                             const data =
                                                                 ACTIVOS[activo.code]
                                                             if (!data) return null
@@ -1989,7 +1990,7 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                                 <div className="tabla-gestion-wrapper">
                                     <table className="tabla-gestion">
                                         <tbody>
-                                            {cursos.map(curso => (
+                                            {sortAlphabetically(cursos, "nombre").map(curso => (
                                                 <tr key={curso.id}>
                                                     <td>{curso.nombre}</td>
                                                     <td className="acciones">
@@ -2052,7 +2053,7 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                                 <div className="tabla-gestion-wrapper">
                                     <table className="tabla-gestion">
                                         <tbody>
-                                            {categorias.map(categoria => (
+                                            {sortAlphabetically(categorias, "nombre").map(categoria => (
                                                 <tr key={categoria.id}>
                                                     <td>
                                                         <p onClick={() => {
@@ -2115,7 +2116,7 @@ const ModalGestion = ({ ambientes, setAmbientes, cursos, setCursos, categorias, 
                                 <div className="tabla-gestion-wrapper">
                                     <table className="tabla-gestion">
                                         <tbody>
-                                            {(categoriaSeleccionada.subcategorias || []).map(subcategoria => (
+                                            {sortAlphabetically(categoriaSeleccionada.subcategorias || [], "nombre").map(subcategoria => (
                                                 <tr key={subcategoria.id}>
                                                     <td>{subcategoria.nombre}</td>
                                                     <td className="acciones">

@@ -15,6 +15,7 @@ const sillaEstudiante = 'https://res.cloudinary.com/francode/image/upload/v17785
 const escritorio = 'https://res.cloudinary.com/francode/image/upload/v1778545803/escritorio_vitxph.png'
 const carpetas = 'https://res.cloudinary.com/francode/image/upload/v1778545759/carpeta_f7aedt.png'
 const mesas = 'https://res.cloudinary.com/francode/image/upload/v1778545836/mesa_jcgzr3.png'
+const gabinete = 'https://res.cloudinary.com/francode/image/upload/v1783693213/gabinete_tdzc57.png'
 
 const ACTIVOS = {
     // ========================================
@@ -209,6 +210,16 @@ const ACTIVOS = {
         categoria: 'OTROS',
         tiposAmbiente: ['Laboratorio'],
         imagenes: [servidor],
+        configurable: true,
+        activoPorDefecto: false
+    },
+
+    GABINETE: {
+        code: 'GABINETE',
+        nombre: 'Gabinete',
+        categoria: 'OTROS',
+        tiposAmbiente: ['Laboratorio'],
+        imagenes: [gabinete],
         configurable: true,
         activoPorDefecto: false
     }

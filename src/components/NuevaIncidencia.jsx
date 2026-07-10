@@ -1,4 +1,5 @@
 import { forwardRef, useState, useEffect, useMemo, useRef } from 'react'
+import { sortAlphabetically } from "../utils/sort";
 import toast from 'react-hot-toast'
 import Notificacion from './Notificacion'
 
@@ -251,13 +252,13 @@ const NuevaIncidencia = forwardRef(({ id, setIncidents, cursosActivos, categoria
                             {menuAbierto === 'curso' && (
                                 <div className="custom-dropdown-container">
                                     <ul className="main-category-list">
-                                        {cursosActivos.map((curso) => (
+                                        {sortAlphabetically(cursosActivos, "nombre").map((curso) => (
                                             <li
                                                 key={curso.id}
                                                 className="submenu-item"
                                                 onClick={() => {
-                                                    setFormData({ ...formData, curso: curso.nombre })
-                                                    setMenuAbierto(false)
+                                                    setFormData({ ...formData, curso: curso.nombre });
+                                                    setMenuAbierto(false);
                                                 }}
                                             >
                                                 {curso.nombre}
@@ -283,7 +284,7 @@ const NuevaIncidencia = forwardRef(({ id, setIncidents, cursosActivos, categoria
                             {menuAbierto === 'docente' && (
                                 <div className="custom-dropdown-container">
                                     <ul className="main-category-list">
-                                        {docentes.map((doc) => (
+                                        {sortAlphabetically(docentes, "name").map((doc) => (
                                             <li
                                                 key={doc.id}
                                                 className="submenu-item"
@@ -351,7 +352,7 @@ const NuevaIncidencia = forwardRef(({ id, setIncidents, cursosActivos, categoria
                                 <div className="custom-dropdown-container">
                                     <ul className="main-category-list">
                                         {/* 1. Mapeamos directamente el arreglo 'categorias' que viene del backend */}
-                                        {categorias.map((categoria) => (
+                                        {sortAlphabetically(categorias, "nombre").map((categoria) => (
                                             <li
                                                 key={categoria.id}
                                                 className={`category-item ${activeSubMenu === categoria.id ? 'active' : ''}`}
@@ -362,7 +363,7 @@ const NuevaIncidencia = forwardRef(({ id, setIncidents, cursosActivos, categoria
                                                 {activeSubMenu === categoria.id && (
                                                     <ul className="floating-submenu">
                                                         {/* 2. Mapeamos las subcategorías embebidas, usando || [] por seguridad */}
-                                                        {(categoria.subcategorias || []).map((sub) => (
+                                                        {sortAlphabetically(categoria.subcategorias || [], "nombre").map((sub) => (
                                                             <li
                                                                 key={sub.id}
                                                                 className="submenu-item"

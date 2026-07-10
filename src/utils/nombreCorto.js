@@ -24,8 +24,8 @@ export const nombreCorto = (fullName, menuName) => {
     // Evaluamos dinámicamente según la cantidad de palabras
     if (p.length === 4) {
         // Ejemplo: "Enzo Aldo Bravo Burgos"
-        apellidos = `${p[0]} ${p[1]}`
-        nombres = `${p[2]} ${p[3]}`
+        nombres = `${p[0]} ${p[1]}`
+        apellidos = `${p[2]} ${p[3]}`
     } else if (p.length === 3) {
         // Ejemplo: "Jaime Meza Huamán"
         nombres = p[0]

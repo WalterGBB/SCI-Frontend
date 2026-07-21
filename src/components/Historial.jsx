@@ -526,6 +526,26 @@ const Historial = forwardRef(({ id, incidents, setIncidents, ambientes, cursosAc
                 </button>
             </div>
 
+            <div className="leyenda-estados">
+                <span className="titulo-leyenda">Estados:</span>
+                <div className="items">
+                    <div className="item-leyenda">
+                        <span className="color pendiente"></span>
+                        <span>Pendiente</span>
+                    </div>
+
+                    <div className="item-leyenda">
+                        <span className="color resuelta"></span>
+                        <span>Resuelta</span>
+                    </div>
+
+                    <div className="item-leyenda">
+                        <span className="color cerrada"></span>
+                        <span>Cerrada</span>
+                    </div>
+                </div>
+            </div>
+
             <div className="tabla-container">
                 <table className="tabla">
                     <thead>

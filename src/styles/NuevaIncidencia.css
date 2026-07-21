@@ -142,21 +142,22 @@
   flex-direction: row;
   gap: 5px;
   color: black;
-  border: none;
+  /* Reservamos 2px de borde transparente desde el inicio para evitar saltos */
+  border: 2px solid transparent;
   padding: 0.1rem 0.4rem;
   border-radius: 10px;
   font-weight: bold;
   font-size: 0.9rem;
   cursor: pointer;
   align-items: center;
-}
 
-.btn-cancelar:hover,
-.btn-guardar:hover {
-  color: #ebebeb;
-  filter: saturate(1.5);
-  border: 2px solid black;
-  transform: scale(1.02);
+  /* Transición suave para scale, color, borde y filtro */
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    filter 0.2s ease,
+    color 0.2s ease;
+  will-change: transform;
 }
 
 .btn-guardar {
@@ -165,6 +166,15 @@
 
 .btn-cancelar {
   background-color: #ff5252cd;
+}
+
+.btn-cancelar:hover,
+.btn-guardar:hover {
+  color: #ebebeb;
+  filter: saturate(1.5);
+  /* Solo cambiamos el color del borde reservado */
+  border-color: black;
+  transform: scale(1.02);
 }
 
 .detalles {

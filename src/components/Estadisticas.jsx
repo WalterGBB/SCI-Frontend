@@ -78,12 +78,21 @@ const Estadisticas = forwardRef(({ id, incidents }, ref) => {
     }, [filteredIncidents])
 
     // Escala azul por cantidad (mismo valor => mismo tono)
+    // Escala azul por cantidad (mismo valor => mismo tono)
     const blueScale = (value, min, max) => {
-        if (max === min) return 'rgb(100,149,237)' // todos iguales
-        const ratio = (value - min) / (max - min)     // 0..1
-        const lightness = 100 - ratio * 40             // 100% (claro) -> 40% (oscuro)
+        if (max === min) return 'hsl(220, 100%, 60%)' // Tono azul medio si todos los valores son iguales
+
+        const ratio = (value - min) / (max - min) // 0..1
+
+        // Rango de luminosidad: 88% (el más tenue y visible) -> 40% (el más oscuro)
+        const minLightness = 88 // Valor mínimo (ratio = 0) -> Azul muy claro/tenue
+        const maxLightness = 40 // Valor máximo (ratio = 1) -> Azul oscuro
+
+        const lightness = minLightness - ratio * (minLightness - maxLightness)
+
         return `hsl(220, 100%, ${lightness}%)`
     }
+
     const values = activosData.map(d => d.value)
     const minVal = values.length ? Math.min(...values) : 0
     const maxVal = values.length ? Math.max(...values) : 0

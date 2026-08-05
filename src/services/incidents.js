@@ -67,6 +67,16 @@ const updateIncidentData = async (id, updatedData) => {
     return response.data
 }
 
+const escalarIncident = async (id, escalamiento) => {
+    const response = await axios.put(
+        `${baseUrl}/${id}/escalar`,
+        escalamiento,
+        getConfig()
+    )
+
+    return response.data
+}
+
 // Exportamos todas las funciones para que puedan ser utilizadas en otros componentes
 export default {
     getAll,
@@ -74,5 +84,6 @@ export default {
     createIncident,
     deleteIncident,
     updatedIncident,
-    updateIncidentData
+    updateIncidentData,
+    escalarIncident
 }

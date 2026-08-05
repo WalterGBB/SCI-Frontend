@@ -140,7 +140,7 @@
 }
 
 .cell-content {
-  max-height: 100px; /* límite de altura */
+  max-height: fit-content; /* límite de altura */
   overflow-y: auto; /* scroll vertical solo si es necesario */
   overflow-x: hidden; /* evita scroll horizontal */
   padding: 2px; /* opcional para dar aire */
@@ -325,6 +325,28 @@
 
 .color.cerrada {
   background: #4b4b4b;
+}
+
+.btn-escalar {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: black;
+  font-weight: 500;
+  padding: 0.2rem 0.45rem;
+  background-color: #3691ffce;
+}
+
+.btn-escalar:hover {
+  filter: saturate(1.5);
+  color: white;
+  cursor: pointer;
+  border: 1px solid black;
+  transform: scale(1.02);
+}
+
+.btn-escalar img {
+  height: 15px;
+  margin-right: 4px;
 }
 
 @media (width < 400px) {

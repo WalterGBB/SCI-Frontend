@@ -1,6 +1,7 @@
 import { forwardRef, useState, useEffect, useRef } from 'react'
 import toast from 'react-hot-toast'
 import Notificacion from './Notificacion'
+import ModalEscalarIncidencia from './ModalEscalarIncidencia'
 
 import '../styles/Historial.css'
 import { formatActivo } from '../utils/activos/formatActivo'
@@ -42,6 +43,54 @@ const Historial = forwardRef(({ id, incidents, setIncidents, ambientes, cursosAc
 
     const [editOpen, setEditOpen] = useState(false)
     const [incidentToEdit, setIncidentToEdit] = useState(null)
+
+    const [incidentEscalar, setIncidentEscalar] = useState(null)
+
+    const [modalEscalarOpen, setModalEscalarOpen] = useState(false)
+    const [incidenciaSeleccionada, setIncidenciaSeleccionada] = useState(null)
+
+    const abrirModalEscalamiento = (incidencia) => {
+        setIncidenciaSeleccionada(incidencia)
+        setModalEscalarOpen(true)
+    }
+
+    const handleEscalar = async (motivo) => {
+        try {
+
+            const incidenteActualizada =
+                await incidentsService.escalarIncident(
+                    incidenciaSeleccionada.id,
+                    {
+                        motivo
+                    }
+                )
+
+            setIncidents(
+                incidents.map(i =>
+                    i.id === incidenteActualizada.id
+                        ? incidenteActualizada
+                        : i
+                )
+            )
+
+            toast.success(
+                `Incidencia escalada a ${incidenteActualizada.nivelServicio}`
+            )
+
+            setModalEscalarOpen(false)
+            setIncidenciaSeleccionada(null)
+
+        } catch (error) {
+
+            toast.error(
+                error.response?.data?.error ??
+                'No se pudo escalar la incidencia'
+            )
+
+            console.error(error)
+
+        }
+    }
 
     useEffect(() => {
         if (incidents.length > 0) {
@@ -554,7 +603,7 @@ const Historial = forwardRef(({ id, incidents, setIncidents, ambientes, cursosAc
                             <th className="cursoDocente">CURSO / DOCENTE</th>
                             <th className="activos">ACTIVOS</th>
                             <th className="prioridadCategoria">PRIORIDAD / CATEGORÍA</th>
-                            <th className="observaciones">OBSERVACIONES</th>
+                            <th className="observaciones">NIVEL DE SERVICIO / OBSERVACIONES</th>
                             <th className="imagen">EVIDENCIA</th>
                             <th className="estado">ESTADO</th>
                         </tr>
@@ -582,7 +631,20 @@ const Historial = forwardRef(({ id, incidents, setIncidents, ambientes, cursosAc
                                     <p>{i.subcategoria || 'N/A'}</p>
                                 </td>
                                 <td className="observaciones">
-                                    <div className="cell-content">{i.observaciones}</div>
+                                    <div className="cell-content">
+                                        <p>N.S: <b>{i.nivelServicio || 'N/A'}</b></p>
+                                        <p>{i.observaciones}</p>
+                                        {i.estado === 'Pendiente' &&
+                                            i.nivelServicio !== 'Proveedor' && (
+                                                <button
+                                                    className="btn-escalar"
+                                                    onClick={() => abrirModalEscalamiento(i)}
+                                                >
+                                                    <img src='https://res.cloudinary.com/francode/image/upload/v1785852222/icons8-elevar-64_dmxw5o.png' alt="escalar-icon" />
+                                                    Escalar
+                                                </button>
+                                            )}
+                                    </div>
                                 </td>
                                 <td className="imagen">
                                     <div className="img-content">
@@ -720,6 +782,18 @@ const Historial = forwardRef(({ id, incidents, setIncidents, ambientes, cursosAc
             {
                 downloading && (
                     <Notificacion mensaje="Generando PDF..." />
+                )
+            }
+            {
+                modalEscalarOpen && (
+                    <ModalEscalarIncidencia
+                        incident={incidenciaSeleccionada}
+                        onClose={() => {
+                            setModalEscalarOpen(false)
+                            setIncidenciaSeleccionada(null)
+                        }}
+                        onEscalar={handleEscalar}
+                    />
                 )
             }
         </section>

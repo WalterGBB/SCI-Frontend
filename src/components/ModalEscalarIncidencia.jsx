@@ -2,7 +2,7 @@ import { useState } from 'react'
 import '../styles/ModalEscalarIncidencia.css'
 
 const NIVELES = [
-    'Personal Docente',
+    'Docente',
     'Administrativo',
     'Directivo',
     'OTI',
@@ -17,8 +17,11 @@ const ModalEscalarIncidencia = ({
 
     const [motivo, setMotivo] = useState('')
 
-    const nivelActual = incident.nivelServicio ?? 'Personal Docente'
-    const indiceActual = NIVELES.indexOf(nivelActual)
+    const nivelActual =
+        incident.nivelServicio ?? 'Docente'
+
+    const indiceActual =
+        NIVELES.indexOf(nivelActual)
 
     const siguienteNivel =
         indiceActual < NIVELES.length - 1
@@ -36,95 +39,72 @@ const ModalEscalarIncidencia = ({
     }
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-escalar">
+
+        <div className="Moes-overlay">
+            <div className="Moes-container">
                 <h2>
                     Escalamiento de Incidencia
                 </h2>
-                <p className="descripcion">
-                    La incidencia será transferida al siguiente nivel
-                    de soporte siguiendo el flujo establecido por ITIL.
+                <p className="Moes-descripcion">
+                    La incidencia será transferida al siguiente nivel de
+                    soporte siguiendo el flujo establecido por ITIL V4.
                 </p>
-                <div className="info-incidencia">
-                    <div className="info-item">
-                        <label>Activo</label>
+
+                <div className="Moes-info">
+                    <div className="Moes-item">
+                        <label>Activos</label>
                         <span>
                             {incident.activosReportados.join(', ')}
                         </span>
                     </div>
-                    <div className="info-item">
+                    <div className="Moes-item">
                         <label>Categoría</label>
-                        <span>
-                            {incident.categoria}
-                        </span>
+                        <span>{incident.categoria}</span>
                     </div>
-                    <div className="info-item">
+                    <div className="Moes-item">
                         <label>Subcategoría</label>
-                        <span>
-                            {incident.subcategoria}
-                        </span>
+                        <span>{incident.subcategoria}</span>
                     </div>
                 </div>
-                <div className="stepper">
+
+                <div className="Moes-flujo">
                     {
                         NIVELES.map((nivel, index) => (
                             <div
                                 key={nivel}
-                                className="step-wrapper"
+                                className={`
+                                    Moes-paso
+                                    ${index < indiceActual ? 'completado' : ''}
+                                    ${index === indiceActual ? 'actual' : ''}
+                                `}
                             >
-                                <div
-                                    className={`
-                                        step
-                                        ${index < indiceActual
-                                            ? 'completed'
-                                            : ''
-                                        }
-                                        ${index === indiceActual
-                                            ? 'current'
-                                            : ''
-                                        }
-                                        ${index > indiceActual
-                                            ? 'pending'
-                                            : ''
-                                        }
-                                    `}
-                                >
+                                <div className="Moes-circulo">
                                     {
                                         index < indiceActual
                                             ? '✓'
                                             : index + 1
                                     }
                                 </div>
-                                <span>
-                                    {nivel}
-                                </span>
-                                {
-                                    index < NIVELES.length - 1 && (
-                                        <div className="step-line"></div>
-                                    )
-                                }
+                                <span>{nivel}</span>
                             </div>
                         ))
                     }
                 </div>
+
                 {
                     siguienteNivel && (
-                        <div className="transicion">
-                            <div className="nivel-actual">
-                                <small>
-                                    Nivel actual
-                                </small>
+                        <div className="Moes-transicion">
+                            <div>
+                                <small>Nivel actual</small>
                                 <strong>
                                     {nivelActual}
                                 </strong>
                             </div>
-                            <div className="arrow">
+                            <div className="Moes-flecha">
                                 ➜
                             </div>
-                            <div className="nivel-destino">
-                                <small>
-                                    Siguiente nivel
-                                </small>
+                            <div>
+                                <small>Siguiente nivel</small>
                                 <strong>
                                     {siguienteNivel}
                                 </strong>
@@ -132,43 +112,36 @@ const ModalEscalarIncidencia = ({
                         </div>
                     )
                 }
-                {
-                    siguienteNivel && (
-                        <>
-                            <label>
-                                Motivo del escalamiento
-                            </label>
-                            <textarea
-                                value={motivo}
-                                onChange={(e) =>
-                                    setMotivo(e.target.value)
-                                }
-                                placeholder="Explique por qué la incidencia debe escalarse al siguiente nivel..."
-                            />
-                        </>
-                    )
-                }
-                <div className="advertencia">
-                    ⚠ Todo escalamiento quedará registrado
-                    permanentemente en el historial de la incidencia.
-                </div>
-                <div className="acciones">
+
+                <label className="Moes-motivo">
+                    Motivo del escalamiento
+                </label>
+
+                <textarea
+                    value={motivo}
+                    onChange={(e) =>
+                        setMotivo(e.target.value)
+                    }
+                    placeholder="Explique el motivo del escalamiento..."
+                />
+
+                <p className="Moes-aviso">
+                    ⚠ Todo escalamiento quedará registrado en el historial
+                    de la incidencia.
+                </p>
+                <div className="Moes-buttons">
                     <button
-                        className="btn-cancelar"
+                        className="Moes-cancel"
                         onClick={onClose}
                     >
                         Cancelar
                     </button>
-                    {
-                        siguienteNivel && (
-                            <button
-                                className="btn-escalar"
-                                onClick={handleSubmit}
-                            >
-                                Escalar incidencia
-                            </button>
-                        )
-                    }
+                    <button
+                        className="Moes-confirm"
+                        onClick={handleSubmit}
+                    >
+                        Escalar
+                    </button>
                 </div>
             </div>
         </div>
